@@ -31,13 +31,14 @@ public class GUI implements ActionListener {
     
     private JPanel makePanel(){
 	    // the panel with the button and text
+
 	    JPanel panel = new JPanel();
 	    panel.setMinimumSize(new Dimension(100,200));
 	    panel.setPreferredSize(new Dimension(100,200));
 	    panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-	    panel.setLayout(new GridLayout(8, 2));
+	    panel.setLayout(new GridLayout(10, 2));
 
-	    BTextPair row1 = new BTextPair("Contains name", "counts button");
+	    BTextPair row1 = new BTextPair("Contains name", "Rai");
 	    BTextPair row2 = new BTextPair("Contains: ", "ln:");
 	    BTextPair row3 = new BTextPair("Matches: ", ".* [0-9][0-9][0-9][0-9]$");
 	    BTextPair row4 = new BTextPair("Publications: ", "/home/joel/proj/rai_pub");
@@ -45,25 +46,21 @@ public class GUI implements ActionListener {
 	    BTextPair row6 = new BTextPair("Unloaded Public: ", "/home/joel/proj/pub_compare");
 
 	    
+	    ComboBoxDemo cbd = new ComboBoxDemo();
 	    
-	    panel.add(containsNameBtt);     
-        panel.add(containsL);
-	    panel.add(containsBtt);
-	    panel.add(Singleton.contains);
-	    panel.add(matchesBtt);
-	    panel.add(Singleton.matches);
-	    panel.add(pubInBtt);
-	    panel.add(Singleton.path_in);
-	    panel.add(titleOutBtt);
-	    panel.add(Singleton.path_out);
-	    panel.add(pubComBtt);
-	    panel.add(Singleton.path_pub);        
+	    cbd.addToPanel(panel);
+	    
+	    row1.addToPane(panel);
+	    row2.addToPane(panel);
+	    row3.addToPane(panel);
+	    row4.addToPane(panel);
+	    row5.addToPane(panel);
+	    row6.addToPane(panel);
+	    
 	    panel.add(getTitlesButton);
 	    panel.add(testL);
 	    panel.add(getMissingButton);
 	    panel.add(button2L);
-
-	    
 	    
 	    return panel;
     }
