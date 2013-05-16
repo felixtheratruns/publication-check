@@ -2,6 +2,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +11,14 @@ import java.util.List;
 public class GUI implements ActionListener {
     private int clicks = 0;
     private JFrame frame = new JFrame();
- 
+    
     JLabel containsL = new JLabel("counts button");
 
     JButton getTitlesButton = new JButton("Get titles");
     JButton getMissingButton = new JButton("Get Missing");
 
-    JLabel testL = new JLabel("Button");
-    JLabel button2L = new JLabel("Button 2:");
+    JLabel testL = new JLabel("");
+    JLabel button2L = new JLabel("");
     JLabel conNameL = new JLabel("Contains name l");
 
     JButton containsNameBtt = new JButton("Contains name");
@@ -38,16 +39,20 @@ public class GUI implements ActionListener {
 	    panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
 	    panel.setLayout(new GridLayout(10, 2));
 
-	    BTextPair row1 = new BTextPair("Contains name", "Rai");
-	    BTextPair row2 = new BTextPair("Contains: ", "ln:");
-	    BTextPair row3 = new BTextPair("Matches: ", ".* [0-9][0-9][0-9][0-9]$");
+	    File f = new File(".","paper_finder_settings");
+	    
+	    BTextPair settingsLocation = new BTextPair("Settings location: ",f.getAbsolutePath());
+	    LTextPair row1 = new LTextPair("Contains name: ","Rai");
+	    LTextPair row2 = new LTextPair("Contains: ","ln:");
+	    LTextPair row3 = new LTextPair("Matches: ",".* [0-9][0-9][0-9][0-9]$");
 	    BTextPair row4 = new BTextPair("Publications: ", "/home/joel/proj/rai_pub");
 	    BTextPair row5 = new BTextPair("Path out: ", "/home/joel/proj/out");
 	    BTextPair row6 = new BTextPair("Unloaded Public: ", "/home/joel/proj/pub_compare");
-
 	    
 	    ComboBoxDemo cbd = new ComboBoxDemo();
 	    
+	    settingsLocation.addToPane(panel);
+
 	    cbd.addToPanel(panel);
 	    
 	    row1.addToPane(panel);
@@ -121,11 +126,11 @@ public class GUI implements ActionListener {
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(pubInBtt.getActionCommand()) ){
-    		runSelect(Singleton.path_in);
+    	//	runSelect(Singleton.path_in);
     	}else if (e.getActionCommand().equals(titleOutBtt.getActionCommand())){
-    		runSelect(Singleton.path_out);
+    	//	runSelect(Singleton.path_out);
     	}else if (e.getActionCommand().equals(pubComBtt.getActionCommand())){
-	        runSelect(Singleton.path_pub);
+	   //     runSelect(Singleton.path_pub);
     	}else if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
     		String areaText;
     	  	try {
