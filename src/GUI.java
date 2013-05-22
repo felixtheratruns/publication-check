@@ -21,8 +21,8 @@ public class GUI implements ActionListener {
     JLabel button2L = new JLabel("");
     JLabel conNameL = new JLabel("Contains name l");
 
-    JButton containsNameBtt = new JButton("Contains name");
-    JButton containsBtt = new JButton("Contains: ");
+    JButton containsNameBtt = new JButton("Exclude name");
+    JButton containsBtt = new JButton("Exclude: ");
     JButton matchesBtt = new JButton("Matches: ");
     JButton pubInBtt = new JButton("Publications: ");
     JButton titleOutBtt = new JButton("Path out: ");
@@ -41,9 +41,10 @@ public class GUI implements ActionListener {
 
 	    File f = new File(".","paper_finder_settings");
 	    
-	    BTextPair settingsLocation = new BTextPair("Settings location: ",f.getAbsolutePath());
-	    LTextPair row1 = new LTextPair("Contains name: ","Rai");
-	    LTextPair row2 = new LTextPair("Contains: ","ln:");
+	    BTextPairSettings settingsLocation = new BTextPairSettings("Settings location: ",f.getAbsolutePath());
+//	    
+	    LTextPair row1 = new LTextPair("Remove Name: ","Rai");
+	    LTextPair row2 = new LTextPair("Remove: ","ln:");
 	    LTextPair row3 = new LTextPair("Matches: ",".* [0-9][0-9][0-9][0-9]$");
 	    BTextPair row4 = new BTextPair("Publications: ", "/home/joel/proj/rai_pub");
 	    BTextPair row5 = new BTextPair("Path out: ", "/home/joel/proj/out");
@@ -150,7 +151,7 @@ public class GUI implements ActionListener {
 		    textArea.setText(areaText);
     	} else if (e.getActionCommand().equals(getMissingButton.getActionCommand())){
     		if(null != textArea.getText()){
-	    		String areaText = Singleton.text.getMissingTitles(Singleton.titles, Singleton.comparator.getText());
+	    		String areaText = Singleton.text.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
 	    		textArea.setText(areaText);
 	    		try {
 					Singleton.text.writeSmallTextFile(Singleton.titles, Singleton.path_out.getText());

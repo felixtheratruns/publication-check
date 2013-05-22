@@ -41,27 +41,22 @@ public class ComboBoxDemo extends JPanel
                            implements ActionListener {
     static JFrame frame;
     JLabel result;
-    String currentPattern;
-    String[] patternExamples = {
-            "Shesh Rai cv",
-            "Jainmin Pan cv",
-            "All cv's",
-            };
+    String curDirectory;
+    JComboBox settingsList;
     
-    JComboBox patternList = new JComboBox(patternExamples);
-
     public ComboBoxDemo() {
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+    	
+    	 //  String[] patternExamples = Singleton.setting_names;
+    	ArrayList<String> patternExamples = new ArrayList<String>();
+    	patternExamples.addAll(Singleton.setting_names);    	
+    	patternExamples.addAll(Singleton.additional_name_options);
 
+    	settingsList = new JComboBox(patternExamples.toArray(new String[patternExamples.size()]));
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        curDirectory = patternExamples.get(0);
  
-        currentPattern = patternExamples[0];
- 
-        //Set up the UI for selecting a pattern.
-        JLabel patternLabel1 = new JLabel("Enter the pattern string or");
-        JLabel patternLabel2 = new JLabel("select one from the list:");
- 
-        patternList.setEditable(true);
-        patternList.addActionListener(this);
+        settingsList.setEditable(true);
+        settingsList.addActionListener(this);
  
         //Create the UI for displaying result.
         JLabel resultLabel = new JLabel("Current Date/Time",
@@ -78,17 +73,17 @@ public class ComboBoxDemo extends JPanel
  
     public void addToPanel(JPanel patternPanel){
      //   JLabel patternLabel1 = new JLabel("Enter the ");
-        JLabel patternLabel2 = new JLabel("Select cv's to process: ");
+        JLabel settings = new JLabel("Select cv's to process: ");
 
-        patternPanel.add(patternLabel2);
-        patternPanel.add(patternList);
+        patternPanel.add(settings);
+        patternPanel.add(settingsList);
   
     }
     
     public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox)e.getSource();
         String newSelection = (String)cb.getSelectedItem();
-        currentPattern = newSelection;
+        curDirectory = newSelection;
       //  reformat();
     }
  
@@ -96,7 +91,7 @@ public class ComboBoxDemo extends JPanel
     public void reformat() {
         Date today = new Date();
         SimpleDateFormat formatter =
-           new SimpleDateFormat(currentPattern);
+           new SimpleDateFormat(curDirectory);
         try {
             String dateString = formatter.format(today);
             result.setForeground(Color.black);

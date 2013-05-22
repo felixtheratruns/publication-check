@@ -1,0 +1,20 @@
+{"Settings":    {"Rai": {
+	"Path pub": "/home/joel/proj/pub_compare",
+	"Path out": "/home/joel/proj/out",
+	"Path in": "/home/joel/proj/rai_pub",
+	"Contains name": "Rai",
+	"Contains": "ln:",
+	"Matches": ".* [0-9][0-9][0-9][0-9]$",
+	"Publications": "/home/joel/proj/rai_pub"
+    },
+    "Pan": { 		
+	"Path pub": "/home/joel/proj/pub_compare",
+	"Path out": "/home/joel/proj/out",
+	"Path in": "/home/joel/proj/rai_pub",
+	"Contains name": "Rai",
+	"Contains": "ln:",
+	"Matches": ".* [0-9][0-9][0-9][0-9]$",
+	"Publications": "/home/joel/proj/rai_pub"
+    }}
+}
+ 

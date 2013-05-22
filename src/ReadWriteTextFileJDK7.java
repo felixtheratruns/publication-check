@@ -92,7 +92,7 @@ public class ReadWriteTextFileJDK7 {
   public String makeBlock(List<String> lines){
 	  	StringBuffer s = new StringBuffer();
 	    for (int i = 0 ; i < lines.size() ; i++){
-	    	s.append(lines.get(i));
+	    	s.append(lines.get(i).trim());
 	    	s.append("\n");
 	    }
 	  return s.toString();

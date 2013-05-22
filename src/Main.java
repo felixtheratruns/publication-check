@@ -14,27 +14,33 @@ public class Main {
 	 // final static String 
 	  public static void main(String... aArgs) throws IOException{
 		Singleton.ENCODING = StandardCharsets.UTF_8;
-		Singleton.contains = new JTextField("In:");
-		Singleton.matches = new JTextField(".* [0-9][0-9][0-9][0-9]$");
-		Singleton.path_in = new JTextField("/home/joel/proj/rai_pub");
-		Singleton.contains_name = new JTextField("Rai");
+		
+		Singleton.contains = new JTextFieldE("Contains","In:");
+		Singleton.matches = new JTextFieldE("Matches", ".* [0-9][0-9][0-9][0-9]$");
+		Singleton.path_in = new JTextFieldE("Path in","/home/joel/proj/rai_pub");
+		Singleton.contains_name = new JTextFieldE("Contains name","Rai");
 		Singleton.area_text = new JTextField("area text");
 		
     	Singleton.titles = new ArrayList<String>();
     	
-		Singleton.path_out = new JTextField("/home/joel/proj/out");
-		Singleton.path_pub = new JTextField("/home/joel/proj/pub_compare");
+		Singleton.path_out = new JTextFieldE("Path out","/home/joel/proj/out");
+		Singleton.path_pub = new JTextFieldE("Path pub","/home/joel/proj/pub_compare");
 		
-		Singleton.comparator = new JTextField("");
+		Singleton.uploaded_pub_list = new JTextField("");
+		
+		LoadSettings settings = new LoadSettings();
+		Singleton.setSettings("Rai", settings.fprop);
 		
 	    ReadWriteTextFileJDK7 text = new ReadWriteTextFileJDK7();
 	    Singleton.text = text;
 	    
 	    List<String> pub_lines = text.readSmallTextFile(Singleton.path_pub.getText());
 	    
-	    Singleton.comparator.setText(text.makeBlock(pub_lines));
+	    Singleton.uploaded_pub_list.setText(text.makeBlock(pub_lines));
 
 	    new GUI();
 	  }
+	  
+
 	
 }

@@ -8,21 +8,25 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 
-public class BTextPair implements ActionListener {
+public class BTextPairSettings extends BTextPair implements ActionListener {
 	public JButton button = null;
 	public JTextField text_field = null;
 	
 
-	public BTextPair(String button_title, String text_title){
-		button = new JButton(button_title);
-		button.addActionListener(this);
-		text_field = new JTextField(text_title);
+	public BTextPairSettings(String button_title, String text_title){
+		super(button_title, text_title);
+	}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		ButtonPress();
 	}
 	
 	public void ButtonPress(){
 		runSelect(text_field);
 	}
-	
 	
     public void runSelect(final JTextField text_field){
         SwingUtilities.invokeLater(new Runnable() {
@@ -38,17 +42,5 @@ public class BTextPair implements ActionListener {
             }
         });
     }
-    
-    public void addToPane(JPanel panel){
-    	panel.add(button);
-    	panel.add(text_field);
-    }
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		ButtonPress();
-		
-	}
 
 }
