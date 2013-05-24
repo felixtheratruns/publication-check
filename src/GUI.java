@@ -44,6 +44,7 @@ public class GUI implements ActionListener {
 	    Singleton.remove_name.setLabel("Remove name: "); LTextPair row1 = Singleton.remove_name;
 	    Singleton.remove.setLabel("Remove: "); LTextPair row2 = Singleton.remove;
 	    Singleton.matches.setLabel("Matches: "); LTextPair row3 = Singleton.matches;
+	    Singleton.split_by.setLabel("Split by: "); LTextPair row3_5 = Singleton.split_by;
 	    Singleton.path_pub.setBText("Publications: "); BTextPair row4 = Singleton.path_pub;
 	    Singleton.path_out.setBText("Path out: "); BTextPair row5 = Singleton.path_out;
 	    Singleton.path_in.setBText("Path in: "); BTextPair row6 = Singleton.path_in;
@@ -63,6 +64,7 @@ public class GUI implements ActionListener {
 	    row1.addToPane(panel);
 	    row2.addToPane(panel);
 	    row3.addToPane(panel);
+	    row3_5.addToPane(panel);
 	    row4.addToPane(panel);
 	    row5.addToPane(panel);
 	    row6.addToPane(panel);

@@ -23,12 +23,14 @@ public class Main {
 		Singleton.matches = new LTextPair("Matches", ".* [0-9][0-9][0-9][0-9]$");
 		Singleton.path_in = new BTextPair("Path in","/home/joel/proj/rai_pub");
 		Singleton.remove_name = new LTextPair("Contains name","Rai");
+		Singleton.split_by = new LTextPair("Split By:", ".");
 		Singleton.area_text = new JTextField("area text");
 		Singleton.path_out = new BTextPair("Path out","/home/joel/proj/out");
 		Singleton.path_pub = new BTextPair("Path pub","/home/joel/proj/pub_compare");
 		
 		LoadSettings settings = new LoadSettings();
-		Singleton.setSettings("Rai", settings.fprop);
+		Singleton.global_settings = settings.fprop;
+		Singleton.setSettings("Rai");
     	Singleton.titles = new ArrayList<String>();
 		
 		Singleton.uploaded_pub_list = new JTextField("");
@@ -40,6 +42,7 @@ public class Main {
 	    
 	    Singleton.uploaded_pub_list.setText(text.makeBlock(pub_lines));
 
+	   // Singleton.gui = new GUI();
 	    new GUI();
 	  }
 	  

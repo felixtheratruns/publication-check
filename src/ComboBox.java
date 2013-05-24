@@ -32,7 +32,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
  
@@ -41,7 +40,7 @@ public class ComboBox extends JPanel
                            implements ActionListener {
     static JFrame frame;
     JLabel result;
-    String curDirectory;
+    String curName;
     JComboBox settingsList;
     
     public ComboBox(Set names) {
@@ -76,7 +75,9 @@ public class ComboBox extends JPanel
     public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox)e.getSource();
         String newSelection = (String)cb.getSelectedItem();
-        curDirectory = newSelection;
+        curName = newSelection;
+        Singleton.setSettings(curName);
+        
       //  reformat();
     }
  
@@ -84,7 +85,7 @@ public class ComboBox extends JPanel
     public void reformat() {
         Date today = new Date();
         SimpleDateFormat formatter =
-           new SimpleDateFormat(curDirectory);
+           new SimpleDateFormat(curName);
         try {
             String dateString = formatter.format(today);
             result.setForeground(Color.black);

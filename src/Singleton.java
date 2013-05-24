@@ -26,7 +26,12 @@ public class Singleton {
 	public static JTextField area_text = null;
 	public static BTextPair path_out = null;
 	public static BTextPair path_pub = null;
+	public static LTextPair split_by = null;
 	public static BTextPairSettings settings_location = null;
+	//public static GUI gui = null;
+	
+
+	public static HashMap<String,HashMap<String,String>> global_settings = null;
 	/*
 	public static ArrayList<String> setting_names = new ArrayList<String>(Arrays.asList(new String[]
 			{"Rai","Pan"}
@@ -36,23 +41,20 @@ public class Singleton {
 			{"Contains name", "Contains", "Matches", "Publications", "Path pub", "Path out", "Path in"}
 	)); 
 	*/
-	
-	public static String settings = "Settings";
-	
+		
 	public static ArrayList<String> setting_names = new ArrayList<String>();
-//	public static ArrayList<String> additional_name_options =new ArrayList<String>();
 	public static ArrayList<String> setting_keys =new ArrayList<String>();
 	
 	
 	
 	//public static String[] setting_keys = 	{contains.getName(), matches.getName(), path_out.getName(), path_pub.getName(), path_in.getName(), contains_name.getName()};
-	public static void setSettings(String name, HashMap<String,HashMap<String,String>> map){
-		HashMap<String, String> props = map.get(name);	
+	public static void setSettings(String name){
+		HashMap<String, String> props = global_settings.get(name);	
 		for (String key : props.keySet()) {
 			System.out.println(key);
 		}
 		
-		Set names = map.keySet();
+		Set names = global_settings.keySet();
 		Singleton.combo_box = new ComboBox(names);
 
 		remove_name.setText(props.get(remove_name.getId()));
@@ -61,7 +63,7 @@ public class Singleton {
 		path_in.setText(props.get(path_in.getId()));
 		path_out.setText(props.get(path_out.getId()));
 		path_pub.setText(props.get(path_pub.getId()));
-		setting_names.addAll(map.keySet());
+		setting_names.addAll(global_settings.keySet());
 		setting_keys.addAll(props.keySet());
 		
 		
