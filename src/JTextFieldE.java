@@ -13,6 +13,7 @@ public class JTextFieldE extends JTextField {
 		return name;
 	}
 	
+	
 	public boolean isName(String n){
 		return (n == name);
 	}

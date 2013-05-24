@@ -2,21 +2,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 
-public class BTextPair implements ActionListener {
+public class ButtonLPair implements ActionListener {
 	public JButton button = new JButton();
-	public JTextField text_field = null;
+	public JLabel text_field = null;
 	public String id = null;
 	
 
-	public BTextPair(String ident, String text_title){
+	public ButtonLPair(String ident, String text_title){
 		id = ident;
-		text_field = new JTextField(text_title);
+		text_field = new JLabel(text_title);
 	}
 	
 	public String getText(){
@@ -35,7 +35,7 @@ public class BTextPair implements ActionListener {
 		text_field.setText(s);
 	}
 	
-    public void runSelect(final JTextField text_field){
+    public void runSelect(final JLabel text_field){
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 //Turn off metal's use of bold fonts

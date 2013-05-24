@@ -109,8 +109,8 @@ public class ReadWriteTextFileJDK7 {
 	  String retVar = "";
 	  for(int i = 0; i < varlen.length ; i++ ){
 		  if(varlen[i].length() > len 
-				  && !varlen[i].contains(Singleton.contains_name.getText()) 
-				  && !varlen[i].contains(Singleton.contains.getText()) 
+				  && !varlen[i].contains(Singleton.remove_name.getText()) 
+				  && !varlen[i].contains(Singleton.remove.getText()) 
 				  && !varlen[i].matches(Singleton.matches.getText()) ){
 			  len = varlen[i].length();
 			  retVar = varlen[i];

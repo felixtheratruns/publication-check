@@ -12,11 +12,12 @@ public class GUI implements ActionListener {
     private int clicks = 0;
     private JFrame frame = new JFrame();
     
-    JLabel containsL = new JLabel("counts button");
 
     JButton getTitlesButton = new JButton("Get titles");
     JButton getMissingButton = new JButton("Get Missing");
-
+    JButton saveToOutputFile = new JButton("Append to output file");
+    JButton clearOutputFile = new JButton("Clear output file");
+/*
     JLabel testL = new JLabel("");
     JLabel button2L = new JLabel("");
     JLabel conNameL = new JLabel("Contains name l");
@@ -27,7 +28,7 @@ public class GUI implements ActionListener {
     JButton pubInBtt = new JButton("Publications: ");
     JButton titleOutBtt = new JButton("Path out: ");
     JButton pubComBtt = new JButton("Uploaded Publications: ");
-    
+   */ 
     JTextArea textArea = new JTextArea();
     
     private JPanel makePanel(){
@@ -37,24 +38,27 @@ public class GUI implements ActionListener {
 	    panel.setMinimumSize(new Dimension(100,200));
 	    panel.setPreferredSize(new Dimension(100,200));
 	    panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
-	    panel.setLayout(new GridLayout(10, 2));
+	    panel.setLayout(new GridLayout(12, 2));
 
-	    File f = new File(".","paper_finder_settings");
+	    Singleton.settings_location.setBText("Settings location: ");
+	    Singleton.remove_name.setLabel("Remove name: "); LTextPair row1 = Singleton.remove_name;
+	    Singleton.remove.setLabel("Remove: "); LTextPair row2 = Singleton.remove;
+	    Singleton.matches.setLabel("Matches: "); LTextPair row3 = Singleton.matches;
+	    Singleton.path_pub.setBText("Publications: "); BTextPair row4 = Singleton.path_pub;
+	    Singleton.path_out.setBText("Path out: "); BTextPair row5 = Singleton.path_out;
+	    Singleton.path_in.setBText("Path in: "); BTextPair row6 = Singleton.path_in;
+	    ComboBox c_box = Singleton.combo_box;
 	    
-	    BTextPairSettings settingsLocation = new BTextPairSettings("Settings location: ",f.getAbsolutePath());
-//	    
-	    LTextPair row1 = new LTextPair("Remove Name: ","Rai");
-	    LTextPair row2 = new LTextPair("Remove: ","ln:");
-	    LTextPair row3 = new LTextPair("Matches: ",".* [0-9][0-9][0-9][0-9]$");
-	    BTextPair row4 = new BTextPair("Publications: ", "/home/joel/proj/rai_pub");
-	    BTextPair row5 = new BTextPair("Path out: ", "/home/joel/proj/out");
-	    BTextPair row6 = new BTextPair("Unloaded Public: ", "/home/joel/proj/pub_compare");
-	    
-	    ComboBoxDemo cbd = new ComboBoxDemo();
-	    
-	    settingsLocation.addToPane(panel);
+	  //  ButtonLPair row7 = new ButtonLPair("Get");
+	  //  ButtonLPair row8 = new ButtonLPair();
 
-	    cbd.addToPanel(panel);
+	    JLabel sepr = new JLabel("");
+	    JLabel sepl = new JLabel("");
+	    
+	    
+	    Singleton.settings_location.addToPane(panel);
+
+	    c_box.addToPanel(panel);
 	    
 	    row1.addToPane(panel);
 	    row2.addToPane(panel);
@@ -62,20 +66,20 @@ public class GUI implements ActionListener {
 	    row4.addToPane(panel);
 	    row5.addToPane(panel);
 	    row6.addToPane(panel);
+	    panel.add(sepl);
+	    panel.add(sepr);
 	    
 	    panel.add(getTitlesButton);
-	    panel.add(testL);
 	    panel.add(getMissingButton);
-	    panel.add(button2L);
-	    
+	    panel.add(saveToOutputFile);
+	    panel.add(clearOutputFile);
 	    return panel;
     }
+    
+    
     private void addActionListeners(){
         getTitlesButton.addActionListener(this);
         getMissingButton.addActionListener(this);
-        pubInBtt.addActionListener(this);
-        titleOutBtt.addActionListener(this);
-        pubComBtt.addActionListener(this);
     }
     
     public void setPropTextArea(){
@@ -126,13 +130,7 @@ public class GUI implements ActionListener {
 
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
-    	if(e.getActionCommand().equals(pubInBtt.getActionCommand()) ){
-    	//	runSelect(Singleton.path_in);
-    	}else if (e.getActionCommand().equals(titleOutBtt.getActionCommand())){
-    	//	runSelect(Singleton.path_out);
-    	}else if (e.getActionCommand().equals(pubComBtt.getActionCommand())){
-	   //     runSelect(Singleton.path_pub);
-    	}else if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
+    	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
     		String areaText;
     	  	try {
 				Singleton.lines = Singleton.text.readSmallTextFile(Singleton.path_in.getText());
@@ -140,7 +138,7 @@ public class GUI implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    		areaText = Singleton.text.getTitles(Singleton.lines, Singleton.contains.getText(), Singleton.matches.getText(),
+    		areaText = Singleton.text.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
 		    		Singleton.path_in.getText());
 
 		    areaText.trim();

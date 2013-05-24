@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,12 +15,18 @@ import org.json.simple.parser.JSONParser;
  
 public class LoadSettings {
 	HashMap<String, HashMap<String, String>> fprop = new HashMap<String, HashMap<String, String>>();
+	ArrayList<String> setting_names = null;
 
+	
+	private Set getKeysFromJObj(JSONObject jo){
+		return jo.keySet();
+	}
 
     public LoadSettings() {
- 
 		JSONParser parser = new JSONParser();
-		HashMap<String, JSONObject> prop = null;			
+		HashMap<String, JSONObject> prop = null;
+		
+		setting_names = new ArrayList<String>(); 
 
 		try {
 			Object obj = null;
@@ -31,10 +38,19 @@ public class LoadSettings {
 			}
 			
 			JSONObject jo = getSettingsObject(obj);
-			prop = getPropertiesFromObj(jo, Singleton.setting_names);			
+			setting_names.addAll(getKeysFromJObj(jo));
+			
+			prop = getPropertiesFromObj(jo, setting_names);
+			
 			HashMap<String, String> derp = new HashMap<String, String>();
+			JSONObject jsonObj = null;
+			Set temp = null;
 			for (String key : prop.keySet()) {
-				derp = getPropertiesFromObjInStrings(prop.get(key), Singleton.setting_keys);
+				jsonObj = getSettingsObject(obj);
+				temp = getKeysFromJObj((JSONObject) jsonObj.get(key));
+				ArrayList<String> setting_keys = new ArrayList<String>();
+				setting_keys.addAll(temp);
+				derp = getPropertiesFromObjInStrings(prop.get(key), setting_keys);
 				fprop.put(key, derp);
 			}
 					
