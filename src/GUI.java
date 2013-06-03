@@ -17,18 +17,6 @@ public class GUI implements ActionListener {
     JButton getMissingButton = new JButton("Get Missing");
     JButton saveToOutputFile = new JButton("Append to output file");
     JButton clearOutputFile = new JButton("Clear output file");
-/*
-    JLabel testL = new JLabel("");
-    JLabel button2L = new JLabel("");
-    JLabel conNameL = new JLabel("Contains name l");
-
-    JButton containsNameBtt = new JButton("Exclude name");
-    JButton containsBtt = new JButton("Exclude: ");
-    JButton matchesBtt = new JButton("Matches: ");
-    JButton pubInBtt = new JButton("Publications: ");
-    JButton titleOutBtt = new JButton("Path out: ");
-    JButton pubComBtt = new JButton("Uploaded Publications: ");
-   */ 
     JTextArea textArea = new JTextArea();
     
     private JPanel makePanel(){
@@ -48,7 +36,7 @@ public class GUI implements ActionListener {
 	    Singleton.path_pub.setBText("Publications: "); BTextPair row4 = Singleton.path_pub;
 	    Singleton.path_out.setBText("Path out: "); BTextPair row5 = Singleton.path_out;
 	    Singleton.path_in.setBText("Path in: "); BTextPair row6 = Singleton.path_in;
-	    ComboBox c_box = Singleton.combo_box;
+	    ComboBox c_box = Singleton.combo_box; 
 	    
 	  //  ButtonLPair row7 = new ButtonLPair("Get");
 	  //  ButtonLPair row8 = new ButtonLPair();

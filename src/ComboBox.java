@@ -43,14 +43,14 @@ public class ComboBox extends JPanel
     String curName;
     JComboBox settingsList;
     
-    public ComboBox(Set names) {
-    	
+    public ComboBox(Set names, String name) {
+    	curName = name;
     	settingsList = new JComboBox(names.toArray(new String[names.size()]));
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        //curDirectory = names.get(0);
  
         settingsList.setEditable(true);
         settingsList.addActionListener(this);
+        
  
         //Create the UI for displaying result.
         JLabel resultLabel = new JLabel("Current Date/Time",
@@ -62,14 +62,14 @@ public class ComboBox extends JPanel
              BorderFactory.createEmptyBorder(5,5,5,5)
         ));
 
+
     } 
  
     public void addToPanel(JPanel patternPanel){
         JLabel settings = new JLabel("Select cv's to process: ");
-
         patternPanel.add(settings);
         patternPanel.add(settingsList);
-  
+        settingsList.setSelectedItem(curName);
     }
     
     public void actionPerformed(ActionEvent e) {

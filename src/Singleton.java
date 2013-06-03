@@ -55,7 +55,7 @@ public class Singleton {
 		}
 		
 		Set names = global_settings.keySet();
-		Singleton.combo_box = new ComboBox(names);
+		Singleton.combo_box = new ComboBox(names, name);
 
 		remove_name.setText(props.get(remove_name.getId()));
 		remove.setText(props.get(remove.getId()));		
