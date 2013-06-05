@@ -123,9 +123,12 @@ public class GUI implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    	  	areaText = DataProc.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
+    	  	/*areaText = DataProc.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
 		    		Singleton.path_in.getText());
+    	  	*/
     	  	
+    	  	
+    	  	areaText = DataProc.getTitlesNew(Singleton.lines);
     	  	
     	  	
     	  	
