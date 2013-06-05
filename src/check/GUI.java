@@ -37,19 +37,13 @@ public class GUI implements ActionListener {
 	    Singleton.path_pub.setBText("Publications: "); BTextPair row4 = Singleton.path_pub;
 	    Singleton.path_out.setBText("Path out: "); BTextPair row5 = Singleton.path_out;
 	    Singleton.path_in.setBText("Path in: "); BTextPair row6 = Singleton.path_in;
-	    ComboBox c_box = Singleton.combo_box; 
-	    
-	  //  ButtonLPair row7 = new ButtonLPair("Get");
-	  //  ButtonLPair row8 = new ButtonLPair();
+	    ComboBox c_box = Singleton.combo_box;
 
 	    JLabel sepr = new JLabel("");
 	    JLabel sepl = new JLabel("");
-	    
-	    
 	    Singleton.settings_location.addToPane(panel);
 
 	    c_box.addToPanel(panel);
-	    
 	    row1.addToPane(panel);
 	    row2.addToPane(panel);
 	    row3.addToPane(panel);
@@ -129,8 +123,9 @@ public class GUI implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    	//	areaText = Singleton.text.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
-		//    		Singleton.path_in.getText());
+    	  	areaText = FilterFile.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
+		    		Singleton.path_in.getText());
+    	  	
     	  	
     	  	
 		    areaText.trim();
@@ -141,7 +136,7 @@ public class GUI implements ActionListener {
 		    textArea.setText(areaText);
     	} else if (e.getActionCommand().equals(getMissingButton.getActionCommand())){
     		if(null != textArea.getText()){
-	    		String areaText = Singleton.text.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
+	    		String areaText = FilterFile.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
 	    		textArea.setText(areaText);
 	    		try {
 					Singleton.text.writeSmallTextFile(Singleton.titles, Singleton.path_out.getText());
