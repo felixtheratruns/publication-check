@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import check.BTextPair;
 import check.BTextPairSettings;
-import check.FilterFile;
+import check.DataProc;
 import check.LTextPair;
 import check.LoadSettings;
 import check.ReadWriteTextFileJDK7;
@@ -69,7 +69,7 @@ public class MyFirstTest {
 	    List<String> pub_lines = Singleton.text.readSmallTextFile(Singleton.path_pub.getText());
 	    
 	    assertTrue(pub_lines.size()>0);
-	    Singleton.uploaded_pub_list.setText(FilterFile.makeBlock(pub_lines));
+	    Singleton.uploaded_pub_list.setText(DataProc.makeBlock(pub_lines));
 
 
     }   

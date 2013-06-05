@@ -123,8 +123,9 @@ public class GUI implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    	  	areaText = FilterFile.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
+    	  	areaText = DataProc.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
 		    		Singleton.path_in.getText());
+    	  	
     	  	
     	  	
     	  	
@@ -136,7 +137,7 @@ public class GUI implements ActionListener {
 		    textArea.setText(areaText);
     	} else if (e.getActionCommand().equals(getMissingButton.getActionCommand())){
     		if(null != textArea.getText()){
-	    		String areaText = FilterFile.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
+	    		String areaText = DataProc.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
 	    		textArea.setText(areaText);
 	    		try {
 					Singleton.text.writeSmallTextFile(Singleton.titles, Singleton.path_out.getText());

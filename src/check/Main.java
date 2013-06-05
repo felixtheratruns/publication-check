@@ -38,7 +38,7 @@ public class Main {
 		Singleton.uploaded_pub_list = new JTextField("");
 	    Singleton.text = new ReadWriteTextFileJDK7();	    
 	    List<String> pub_lines = Singleton.text.readSmallTextFile(Singleton.path_pub.getText());
-	    Singleton.uploaded_pub_list.setText(FilterFile.makeBlock(pub_lines));
+	    Singleton.uploaded_pub_list.setText(DataProc.makeBlock(pub_lines));
 
 	   // Singleton.gui = new GUI();
 	    new GUI();
