@@ -2,6 +2,7 @@ package check;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataProc {
@@ -16,7 +17,7 @@ public class DataProc {
 		  return retValue;
 	  }
 	 
-	 public static String getTitlesNew(List<String> lines){
+	 public static ArrayList<Store> getTitlesNew(List<String> lines_matches){
 		 ReadWriteTextFileJDK7 rwtf = new ReadWriteTextFileJDK7();
 		 List<String> published = null;
 		 try {
@@ -26,7 +27,11 @@ public class DataProc {
 			e.printStackTrace();
 		 }
 		 String cur_uppub = null;
-		 String[] cur_uppub_split = null;
+		 String[] cur_up_s = null;
+		 
+		 HashMap<String, String> store = new HashMap<String, String>();
+		 
+		 ArrayList<Store> storages = new ArrayList<Store>();
 		 for(int i = 0; i < published.size() ; i++){
 			 cur_uppub = published.get(i);
 			 cur_uppub = cur_uppub.toLowerCase();
@@ -34,25 +39,37 @@ public class DataProc {
 				 
 			 } else {
 				 //is title
-				 cur_uppub.trim();
-				 cur_uppub_split = cur_uppub.split(" ");
-			//	 Singleton.lines
-				 
-				 String cur_line =null;
-				 String[] cur_line_sp = null;
+				 cur_uppub = cur_uppub.trim();
+				 cur_up_s = cur_uppub.split(" ");
+				 String cur_line_match =null;
+				 String[] match_sp = null;
+				 int cur_index = 0;
+				 int cur_match_len = 0;
+				 int match_len = 0;
 				 int index = 0;
-				 for(int a = 0; a < lines.size(); a++){
-					 cur_line = Sanitize(lines.get(a));
-					 cur_line_sp = cur_line.split(" ");
-					 index = getFirstMatchingIndex(cur_uppub_split[0], cur_line_sp);
-					 if(index == -1){
+				 String matching = "";
+				 for(int a = 0; a < lines_matches.size(); a++){
+					 cur_line_match = Sanitize(lines_matches.get(a));
+					 match_sp = cur_line_match.split(" ");
+					 cur_index = getFirstMatchingIndex(cur_up_s[0], match_sp);
+					 if(cur_index == -1){
 						 break;
 					 }
+					 cur_match_len = getMatchLength(cur_index, cur_up_s, match_sp);
+	 
+					 if(cur_match_len > match_len){
+						 index = cur_index;
+						 matching = cur_line_match;
+						 match_len = cur_match_len;
+					 }
 				 }
+				 storages.add(new Store(cur_up_s, match_sp,cur_uppub,matching,match_len));
 			 }
 		 }
-		return cur_uppub;
+		return storages;
 	 }
+	 
+
 	 
 	 public static String Sanitize(String s){
 		 return s.toLowerCase().trim();
@@ -67,11 +84,21 @@ public class DataProc {
 		 return -1;
 	 }
 	 
-	 public static int getMatchLength(int index, String[] cur_line_sp){
-		// for(i = index; i< ;i++){
-			 
-		// }
-		return -1;
+	 public static int getMatchLength(int index, String[] match, String[] cur_line_sp){
+		int a = 0;
+		int b = index; 
+
+		
+		while(a< cur_line_sp.length && b < cur_line_sp.length){
+			if(match[a].equals(cur_line_sp[b])){
+				
+			} else {
+				return a;
+			}
+			a++;
+			b++;
+		}
+		return a;
 	 }
 	 
 	 public static String getTitles(List<String> lines, String contains, String matches, String path){

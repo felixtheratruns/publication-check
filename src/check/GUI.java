@@ -113,11 +113,18 @@ public class GUI implements ActionListener {
         });
     }
 
+    
+    public void addToArea(ArrayList<Store> a){
+    	
+    	
+    }
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
     		String areaText;
-    	  	try {
+    	  	ArrayList<Store> stores = new ArrayList<Store>();
+    		
+    		try {
 				Singleton.lines = Singleton.text.readSmallTextFile(Singleton.path_in.getText());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -128,7 +135,7 @@ public class GUI implements ActionListener {
     	  	*/
     	  	
     	  	
-    	  	areaText = DataProc.getTitlesNew(Singleton.lines);
+    	  	stores = DataProc.getTitlesNew(Singleton.lines);
     	  	
     	  	
     	  	
@@ -153,5 +160,6 @@ public class GUI implements ActionListener {
     		}
     	}
     };
+    
 }
 

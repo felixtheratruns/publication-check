@@ -1,0 +1,17 @@
+package check;
+
+public class Store{
+	 private String[] upload_s;
+	 private String[] match_s;
+	 private String upload;
+	 private String match;
+	 private int len_of_match;
+	 public Store(String[] a, String[] b, String c, String d, int len){
+		 upload_s = a;
+		 match_s = b;
+		 upload = c;
+		 match = d;
+		 len_of_match = len;
+		 
+	 }
+}
