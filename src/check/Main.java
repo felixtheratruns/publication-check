@@ -25,7 +25,7 @@ public class Main {
 		Singleton.path_in = new BTextPair("Path in","./rai_pub");
 		Singleton.remove_name = new LTextPair("Contains name","Rai");
 		Singleton.split_by = new LTextPair("Split By:", ".");
-		Singleton.area_text = new JTextField("area text");
+//		Singleton.area_text = new JTextField("area text");
 		Singleton.path_out = new BTextPair("Path out","./out");
 		Singleton.path_pub = new BTextPair("Path pub","./pub_compare");
 		

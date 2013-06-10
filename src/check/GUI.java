@@ -114,14 +114,10 @@ public class GUI implements ActionListener {
     }
 
     
-    public void addToArea(ArrayList<Store> a){
-    	
-    	
-    }
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
-    		String areaText;
+    		String areaText = null;
     	  	ArrayList<Store> stores = new ArrayList<Store>();
     		
     		try {
@@ -134,13 +130,18 @@ public class GUI implements ActionListener {
 		    		Singleton.path_in.getText());
     	  	*/
     	  	
-    	  	
     	  	stores = DataProc.getTitlesNew(Singleton.lines);
     	  	
+    	  	areaText = DataProc.getBlockFromStores(stores);
     	  	
-    	  	
-		    areaText.trim();
-		    Singleton.area_text.setText(areaText);
+		 //   areaText.trim();
+        	/*for(int i = 0; i < stores.size(); i++){
+        	//	.append(stores.get(i).getMatch());
+        	}     */   		
+        	
+        	Singleton.area_text.setText(areaText);
+
+	//	    Singleton.area_text.setText(areaText);
 		    textArea.setWrapStyleWord(true);
 		    textArea.setRows(600);
 		    textArea.setColumns(1);

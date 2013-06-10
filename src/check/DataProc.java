@@ -17,6 +17,14 @@ public class DataProc {
 		  return retValue;
 	  }
 	 
+	 public static String getBlockFromStores(ArrayList<Store> stores){
+		 StringBuffer sb = new StringBuffer();
+		 for(int i = 0; i < stores.size(); i++){
+			 sb.append(stores.get(i).getMatch());
+		 } 
+		 return sb.toString();
+	 }
+	 
 	 public static ArrayList<Store> getTitlesNew(List<String> lines_matches){
 		 ReadWriteTextFileJDK7 rwtf = new ReadWriteTextFileJDK7();
 		 List<String> published = null;
@@ -32,6 +40,7 @@ public class DataProc {
 		 HashMap<String, String> store = new HashMap<String, String>();
 		 
 		 ArrayList<Store> storages = new ArrayList<Store>();
+
 		 for(int i = 0; i < published.size() ; i++){
 			 cur_uppub = published.get(i);
 			 cur_uppub = cur_uppub.toLowerCase();
@@ -48,6 +57,8 @@ public class DataProc {
 				 int match_len = 0;
 				 int index = 0;
 				 String matching = "";
+				 String[] up_s = null;
+				 String[] match = null;
 				 for(int a = 0; a < lines_matches.size(); a++){
 					 cur_line_match = Sanitize(lines_matches.get(a));
 					 match_sp = cur_line_match.split(" ");
@@ -61,9 +72,13 @@ public class DataProc {
 						 index = cur_index;
 						 matching = cur_line_match;
 						 match_len = cur_match_len;
+						 up_s = cur_up_s;
+						 match = match_sp;
 					 }
 				 }
-				 storages.add(new Store(cur_up_s, match_sp,cur_uppub,matching,match_len));
+				 if (match_len > 2){
+					 storages.add(new Store(up_s, match,cur_uppub,matching,match_len));
+				 }
 			 }
 		 }
 		return storages;
@@ -89,16 +104,16 @@ public class DataProc {
 		int b = index; 
 
 		
-		while(a< cur_line_sp.length && b < cur_line_sp.length){
+		while(a< match.length && b < cur_line_sp.length){
 			if(match[a].equals(cur_line_sp[b])){
 				
 			} else {
-				return a;
+				return a+1;
 			}
 			a++;
 			b++;
 		}
-		return a;
+		return a+1;
 	 }
 	 
 	 public static String getTitles(List<String> lines, String contains, String matches, String path){

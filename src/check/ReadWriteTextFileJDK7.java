@@ -15,13 +15,9 @@ import java.util.Scanner;
 
 
 public class ReadWriteTextFileJDK7 {
-//tst
+
 	  public ReadWriteTextFileJDK7(){
 	  }
-  
-
-  
-
 
   //For smaller files
   public List<String> readSmallTextFile(String aFileName) throws IOException {

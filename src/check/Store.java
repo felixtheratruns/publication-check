@@ -14,4 +14,12 @@ public class Store{
 		 len_of_match = len;
 		 
 	 }
+	 
+	 public String getMatch(){
+		 return match;
+	 }
+	 
+	 public String getUpload(){
+		 return upload;
+	 }
 }
