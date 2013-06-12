@@ -12,7 +12,6 @@ import java.util.List;
 public class GUI implements ActionListener {
     private int clicks = 0;
     private JFrame frame = new JFrame();
-    
 
     JButton getTitlesButton = new JButton("Get titles");
     JButton getMissingButton = new JButton("Get Missing");
@@ -133,15 +132,7 @@ public class GUI implements ActionListener {
     	  	stores = DataProc.getTitlesNew(Singleton.lines);
     	  	
     	  	areaText = DataProc.getBlockFromStores(stores);
-    	  	
-		 //   areaText.trim();
-        	/*for(int i = 0; i < stores.size(); i++){
-        	//	.append(stores.get(i).getMatch());
-        	}     */   		
-        	
         	Singleton.area_text.setText(areaText);
-
-	//	    Singleton.area_text.setText(areaText);
 		    textArea.setWrapStyleWord(true);
 		    textArea.setRows(600);
 		    textArea.setColumns(1);

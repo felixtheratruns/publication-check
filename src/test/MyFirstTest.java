@@ -58,12 +58,9 @@ public class MyFirstTest {
     	
 		LoadSettings settings = new LoadSettings("paper_finder_settings");
 		Singleton.global_settings = settings.getFprop();
-		
 		Singleton.setSettings("Rai");
     	Singleton.titles = new ArrayList<String>();
-    	
 		Singleton.uploaded_pub_list = new JTextField("");
-
 		
 	    Singleton.text = new ReadWriteTextFileJDK7();
 	    List<String> pub_lines = Singleton.text.readSmallTextFile(Singleton.path_pub.getText());

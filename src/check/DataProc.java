@@ -3,6 +3,7 @@ package check;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class DataProc {
@@ -20,12 +21,13 @@ public class DataProc {
 	 public static String getBlockFromStores(ArrayList<Store> stores){
 		 StringBuffer sb = new StringBuffer();
 		 for(int i = 0; i < stores.size(); i++){
-			 sb.append(stores.get(i).getMatch());
+			 sb.append(stores.get(i).getUpload());
 		 } 
 		 return sb.toString();
 	 }
 	 
-	 public static ArrayList<Store> getTitlesNew(List<String> lines_matches){
+	 public static ArrayList<Store> getTitlesNew(List<String> lines_m){
+		 
 		 ReadWriteTextFileJDK7 rwtf = new ReadWriteTextFileJDK7();
 		 List<String> published = null;
 		 try {
@@ -37,10 +39,12 @@ public class DataProc {
 		 String cur_uppub = null;
 		 String[] cur_up_s = null;
 		 
-		 HashMap<String, String> store = new HashMap<String, String>();
+		 //HashMap<String, String> store = new HashMap<String, String>();
 		 
 		 ArrayList<Store> storages = new ArrayList<Store>();
-
+		 
+		 
+		 
 		 for(int i = 0; i < published.size() ; i++){
 			 cur_uppub = published.get(i);
 			 cur_uppub = cur_uppub.toLowerCase();
@@ -59,12 +63,18 @@ public class DataProc {
 				 String matching = "";
 				 String[] up_s = null;
 				 String[] match = null;
-				 for(int a = 0; a < lines_matches.size(); a++){
-					 cur_line_match = Sanitize(lines_matches.get(a));
+				 
+				 
+				 Iterator<String> lines_mat = lines_m.iterator();
+				 String lines_matches = null;
+				 while(lines_mat.hasNext()){
+				// for(int a = 0; a < lines_matches.size(); a++){
+					 lines_matches = lines_mat.next();
+					 cur_line_match = Sanitize(lines_matches);
 					 match_sp = cur_line_match.split(" ");
 					 cur_index = getFirstMatchingIndex(cur_up_s[0], match_sp);
 					 if(cur_index == -1){
-						 break;
+						 continue;
 					 }
 					 cur_match_len = getMatchLength(cur_index, cur_up_s, match_sp);
 	 
@@ -76,8 +86,9 @@ public class DataProc {
 						 match = match_sp;
 					 }
 				 }
-				 if (match_len > 2){
+				 if (up_s != null && match_len == up_s.length){
 					 storages.add(new Store(up_s, match,cur_uppub,matching,match_len));
+					 lines_mat.remove();
 				 }
 			 }
 		 }

@@ -18,6 +18,7 @@ public class BTextPair implements ActionListener {
 	public BTextPair(String ident, String text_title){
 		id = ident;
 		text_field = new JTextField(text_title);
+		button.addActionListener(this);
 	}
 	
 	public String getText(){

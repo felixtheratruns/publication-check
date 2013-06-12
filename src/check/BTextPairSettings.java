@@ -10,12 +10,13 @@ import javax.swing.UIManager;
 
 
 public class BTextPairSettings extends BTextPair implements ActionListener {
-	public JButton button = null;
-	public JTextField text_field = null;
+	//public JTextField text_field = null;
 	
 
 	public BTextPairSettings(String button_title, String text_title){
 		super(button_title, text_title);
+	//	button.addActionListener(this);
+		
 	}
 	
 
