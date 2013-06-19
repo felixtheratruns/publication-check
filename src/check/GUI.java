@@ -117,8 +117,11 @@ public class GUI implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
     		String areaText = null;
-    	  	ArrayList<Store> stores = new ArrayList<Store>();
-    		
+    	  	Stores stores = null;
+    		ArrayList<Store> found = null;
+    		ArrayList<Store> unfound = null;
+    	  	
+    	  	
     		try {
 				Singleton.lines = Singleton.text.readSmallTextFile(Singleton.path_in.getText());
 			} catch (IOException e1) {
@@ -130,8 +133,17 @@ public class GUI implements ActionListener {
     	  	*/
     	  	
     	  	stores = DataProc.getTitlesNew(Singleton.lines);
+    	  	found = stores.getFound();
+    	  	unfound = stores.getUnfound();
     	  	
-    	  	areaText = DataProc.getBlockFromStores(stores);
+    	  	
+    	  	
+    	  	///areaText = DataProc.getBlockFromStores(unfound);
+    	  	areaText = DataProc.getTitlesNewTest();
+    	  	
+    	  	
+    	  	
+    	  	
         	Singleton.area_text.setText(areaText);
 		    textArea.setWrapStyleWord(true);
 		    textArea.setRows(600);

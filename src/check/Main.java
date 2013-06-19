@@ -16,6 +16,7 @@ public class Main {
 	 // final static String 
 	
 	  public static void main(String... aArgs) throws IOException{
+			
 		Singleton.ENCODING = StandardCharsets.UTF_8;
 		File f = new File(".","paper_finder_settings");
 
@@ -42,8 +43,31 @@ public class Main {
 
 	   // Singleton.gui = new GUI();
 	    new GUI();
+	    
+		/*  ArrayList<String> ar = new ArrayList<String>();
+		  ar.add("ar");
+		  test(ar);
+		  ar.add("main");
+		  printar(ar);
+		  */
+	    
+	    
 	  }
 	  
-
-	
+	 /* 
+	  public static void test(ArrayList<String> derp){
+		  derp.add("test string");
+		  for(int i = 0; i < derp.size(); i++){
+		  	System.out.println("first" + derp.get(i));
+		  }
+	  }
+	  	
+	  
+	  
+	  public static void printar(ArrayList<String> ar){
+		  for(int i = 0; i < ar.size(); i++){
+			  System.out.println(ar.get(i));
+		  }
+	  }
+	  */
 }

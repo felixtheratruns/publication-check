@@ -15,6 +15,12 @@ public class Store{
 		 
 	 }
 	 
+	 public Store(String up, String[] up_s, int len){
+		 upload = up;
+		 upload_s = up_s;
+		 len_of_match = len;
+	 }
+	 
 	 public String getMatch(){
 		 return match;
 	 }

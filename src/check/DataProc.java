@@ -21,12 +21,43 @@ public class DataProc {
 	 public static String getBlockFromStores(ArrayList<Store> stores){
 		 StringBuffer sb = new StringBuffer();
 		 for(int i = 0; i < stores.size(); i++){
-			 sb.append(stores.get(i).getUpload());
+			 sb.append(stores.get(i).getUpload() + "\n\n");
 		 } 
 		 return sb.toString();
 	 }
 	 
-	 public static ArrayList<Store> getTitlesNew(List<String> lines_m){
+	 
+	 public static String getTitlesNewTest(){
+		 
+		 ReadWriteTextFileJDK7 rwtf = new ReadWriteTextFileJDK7();
+		 List<String> published = null;
+		 try {
+			published = rwtf.readSmallTextFile(Singleton.path_pub.getText());
+		 } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		 }
+		 String cur_uppub = null;
+		 String[] cur_up_s = null;
+		 StringBuffer sb = new StringBuffer();
+		 for(int i = 0; i < published.size() ; i++){
+			 cur_uppub = published.get(i);
+			// cur_uppub = cur_uppub.toLowerCase();
+			 if(published.get(i).matches("^\\s\\s\\s\\s.*")){
+			 //cur_uppub.matches("^[\\s\\s\\s\\s]+")
+			/*	 if(published.get(i).matches("\\s.*\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d")){
+					 System.out.println(published.get(i));
+				 }
+				*/
+			 } else {
+				 sb.append(published.get(i));
+				 sb.append("\n\n");
+			 }
+		 }
+		 return sb.toString();
+	 }
+		 
+	 public static Stores getTitlesNew(List<String> lines_m){
 		 
 		 ReadWriteTextFileJDK7 rwtf = new ReadWriteTextFileJDK7();
 		 List<String> published = null;
@@ -41,8 +72,9 @@ public class DataProc {
 		 
 		 //HashMap<String, String> store = new HashMap<String, String>();
 		 
-		 ArrayList<Store> storages = new ArrayList<Store>();
-		 
+		 ArrayList<Store> found = new ArrayList<Store>();
+		 ArrayList<Store> unfound = new ArrayList<Store>();
+
 		 
 		 
 		 for(int i = 0; i < published.size() ; i++){
@@ -68,7 +100,6 @@ public class DataProc {
 				 Iterator<String> lines_mat = lines_m.iterator();
 				 String lines_matches = null;
 				 while(lines_mat.hasNext()){
-				// for(int a = 0; a < lines_matches.size(); a++){
 					 lines_matches = lines_mat.next();
 					 cur_line_match = Sanitize(lines_matches);
 					 match_sp = cur_line_match.split(" ");
@@ -87,12 +118,15 @@ public class DataProc {
 					 }
 				 }
 				 if (up_s != null && match_len == up_s.length){
-					 storages.add(new Store(up_s, match,cur_uppub,matching,match_len));
+					 found.add(new Store(up_s, match,cur_uppub,matching,match_len));
 					 lines_mat.remove();
+				 } else {
+					 unfound.add(new Store(cur_uppub, up_s, match_len));
 				 }
 			 }
-		 }
-		return storages;
+		 }	
+		 Stores s = new Stores(found, unfound);
+		 return s;
 	 }
 	 
 
