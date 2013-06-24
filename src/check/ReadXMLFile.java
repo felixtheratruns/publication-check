@@ -9,18 +9,57 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
- 
-public class ReadXMLFile {
 	
+/**
+ * 
+ * 
+ * Note to self: remember to remove  punctuation at the end of the titles
+ * when comparing.
+ * @author joel
+ *
+ */
 
+public class ReadXMLFile {
+	static File out_file = new File("/media/datal/Documents/test");
+	static BufferedWriter bw = null;
+	static ArrayList<String> list = null;
+	
+	
+	
+	  private static void openFile(){
+			try {
+				//String content = "This is the content to write into file";
+				// if file doesnt exists, then create it
+				if (!out_file.exists()) {
+					out_file.createNewFile();
+				}
+	 
+				FileWriter fw = new FileWriter(out_file.getAbsoluteFile());
+				bw = new BufferedWriter(fw);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	  }
+	  
+	  
+	  private static void writeFile(String s) throws IOException{
+		  bw.write(s);
+	  }
+	  
+	  private static void closeFile() throws IOException{
+		  bw.close();
+	  }
+	
   public static void main(String[] args) {
     try {
  
-	File file = new File("/home/joel/Documents/publications.xml");
+	File file = new File("/media/datal/Documents/publications.xml");
  
 	DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
                              .newDocumentBuilder();
@@ -28,30 +67,41 @@ public class ReadXMLFile {
 	Document doc = dBuilder.parse(file);
 	
 	
+	
+	
 	Nodel<String> root = new Nodel<String>("Root element :" + doc.getDocumentElement().getNodeName());
 
 	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 	//list.insert("Root element :" + doc.getDocumentElement().getNodeName());
-
+	openFile();
 	if (doc.hasChildNodes()) {
 		printNode(doc.getChildNodes(),root);
 	}
- 
+	closeFile();
     } catch (Exception e) {
     	System.out.println(e.getMessage());
     }
-	//System.out.println("test"+lines.get(0));
-
-    //writeFile(lines);
-
+  }
+  
+  
+  private static String Sanitize(String str){
+	  if ((str.endsWith(",")) || str.endsWith(".")) {
+		  str = str.substring(0,str.length()-1);  
+	  }
+	  
+	  if ((str.endsWith(",")) || str.endsWith(".")) {
+		  str = Sanitize(str);
+	  }
+	  
+	  return str;
   }
  
-  private static void printNode(NodeList nodeList, Nodel<String> root) {
+  private static void printNode(NodeList nodeList, Nodel<String> root) throws DOMException, IOException {
     for (int count = 0; count < nodeList.getLength(); count++) {
 		Node tempNode = nodeList.item(count);
 		// make sure it's element node.
 		if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-	 
+			
 	//		list.add("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
 			// get node name and value
 		/*	System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
@@ -66,7 +116,9 @@ public class ReadXMLFile {
 		//	System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
 			
 			if (pathCorrect(tempNode)){
+				
 				System.out.println("Node value =" + tempNode.getTextContent() + " [CLOSE]");
+				System.out.println("Node value =" + Sanitize(tempNode.getTextContent()) + " [CLOSE]");
 			}
 			
 			
@@ -93,7 +145,7 @@ public class ReadXMLFile {
     }
   }
   
-  private static boolean pathCorrect(Node test){
+  private static boolean pathCorrect(Node test) throws IOException{
 
 	  Node itemNode = null;
 	  Node orig = test;
@@ -122,11 +174,9 @@ public class ReadXMLFile {
 	//  System.out.println("String "+itemNode.getNodeName());
 
 	  if(!itemNode.getNodeName().equals("string"))
-		  return false;
+		  return false;	 	  
 	  if(!itemNode.getTextContent().equals("title"))
 		  return false;
-	 
-	  
 	  
 	  test = test.getParentNode();
       if(!test.getNodeName().equals("dictionary"))
@@ -143,51 +193,33 @@ public class ReadXMLFile {
 	  test = test.getParentNode();
 	  if(!test.getNodeName().equals("#document"))
 		  return false;
-
 	  if(orig.getTextContent().equals("Publications"))
 		  return false;
-	/*  while(test != null){
-		  System.out.println("tree: " +test.getNodeName());
-		  test = test.getParentNode();
-	  } */
+	  /*
+	  if(orig.getTextContent().contains("diffusion") ){
+		  while(orig != null){
+			  System.out.println("tree: " +orig.getNodeName());
+			  NodeList node_list = orig.getChildNodes();
+			//  writeFile(orig.getNodeName() + ":"+ orig.getTextContent() + "\n");
+			  System.out.println(orig.getNodeName() + ":"+ orig.getTextContent() + "\n");
+			  for(int i = 0; i < node_list.getLength(); i++){
+			//	  System.out.println("---" + node_list.item(i).getNodeName() + ":" + node_list.item(i).getTextContent()  +"\n");
+			//	  writeFile("---" + node_list.item(i).getNodeName() + ":" + node_list.item(i).getTextContent()  +"\n");
+			  }
+			//  writeFile("\n");
+			  orig = orig.getParentNode();
+		  }
+	  }*/
+	  
 	  return true;
   }
   
-  private static void writeFile(List<String> content){
-		try {
-			 
-			//String content = "This is the content to write into file";
- 
-			File file = new File("/home/joel/Documents/test");
- 
-			// if file doesnt exists, then create it
-			if (!file.exists()) {
-				file.createNewFile();
-			}
- 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			for(int i = 0 ; i<content.size(); i++){
-				bw.write(content.get(i));
-			}
-			bw.close();
- 
-			System.out.println("Done");
- 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+  
+  private static void closeFile(BufferedWriter bw) throws IOException{
 	  
-	  
-	  /*
-	  ReadWriteTextFileJDK7 rwtf = new ReadWriteTextFileJDK7();
-	  
-	  try {
-		rwtf.writeSmallTextFile(lines, "/home/joel/Documents/test");
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}*/
+		bw.close();
+		System.out.println("Done");
   }
   
  
