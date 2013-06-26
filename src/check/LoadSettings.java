@@ -3,26 +3,25 @@ package check;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Set;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
  
 public class LoadSettings {
 	HashMap<String, HashMap<String, String>> fprop = new HashMap<String, HashMap<String, String>>();
 	ArrayList<String> setting_names = null;
+	JSONObject json_obj = null;
 	
 	public HashMap<String, HashMap<String, String>> getFprop(){
 		return fprop;
-		
 	}
 	
+	public JSONObject getJSONObject(){
+		return json_obj;
+	}
 
 	public ArrayList<String> getSettingNames(){
 		return setting_names;
@@ -41,13 +40,15 @@ public class LoadSettings {
 		try {
 			Object obj = null;
 			try {
-				obj = parser.parse(new FileReader(path));
+				json_obj = (JSONObject) parser.parse(new FileReader(path));
 			} catch (org.json.simple.parser.ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			JSONObject jo = getSettingsObject(obj);
+			
+			
+			JSONObject jo = getSettingsObject(json_obj);
 			setting_names.addAll(getKeysFromJObj(jo));
 			
 			prop = getPropertiesFromObj(jo, setting_names);
@@ -56,7 +57,7 @@ public class LoadSettings {
 			JSONObject jsonObj = null;
 			Set temp = null;
 			for (String key : prop.keySet()) {
-				jsonObj = getSettingsObject(obj);
+				jsonObj = getSettingsObject(json_obj);
 				temp = getKeysFromJObj((JSONObject) jsonObj.get(key));
 				ArrayList<String> setting_keys = new ArrayList<String>();
 				setting_keys.addAll(temp);
@@ -82,8 +83,8 @@ public class LoadSettings {
 
      public static JSONObject getSettingsObject(Object jo){		
    		JSONObject jsonObject = (JSONObject) jo;
-		JSONObject jsons = (JSONObject) jsonObject.get("Settings");
-		return jsons;
+		//JSONObject jsons = (JSONObject) jsonObject.get("Settings");
+		return jsonObject;
     }
      
      public static JSONObject getJsonObjectAtKey(String str, JSONObject jo){
@@ -92,9 +93,11 @@ public class LoadSettings {
      
      public static HashMap<String,JSONObject> getPropertiesFromObj(JSONObject jo, ArrayList<String> keys){
     	 HashMap<String, JSONObject> properties = new HashMap<String,JSONObject>();
+    	// JSONObject jsons = (JSONObject) jo.get("Settings");
     	 for( String str : keys ){
-    		 properties.put(str , (JSONObject) jo.get(str));
-    	 }
+    		 System.out.println(jo.get(str));
+    		 properties.put(str ,(JSONObject) jo.get(str));
+    	 } //(JSONObject)
     	 return properties;
      }
      

@@ -1,4 +1,7 @@
-{"Settings":    {"Rai": {
+{"Settings": 
+{"general": {"XML path":"/media/datal/jhome/data/publications.xml"},
+"CVs": {
+"Rai": {
 	"Path pub": "/media/datal/jhome/workspace/calcVolunteerProj/data/pub_compare",
 	"Path out": "/media/datal/jhome/workspace/calcVolunteerProj/data/out",
 	"Path in": "/media/datal/jhome/workspace/calcVolunteerProj/data/rai_pub",
@@ -17,4 +20,4 @@
 	"Publications": "/media/datal/jhome/workspace/calcVolunteerProj/data/pan_pub"
     }}
 }
- 
+}

@@ -27,7 +27,7 @@ public class Test {
 		Document doc = dBuilder.parse(file);
 		
 		
-		Nodel<String> root = new Nodel<String>("Root element :" + doc.getDocumentElement().getNodeName());
+	//	Nodel<String> root = new Nodel<String>("Root element :" + doc.getDocumentElement().getNodeName());
 
 		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 		//list.insert("Root element :" + doc.getDocumentElement().getNodeName());

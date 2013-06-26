@@ -18,41 +18,48 @@ import org.w3c.dom.NodeList;
 	
 /**
  * 
- * 
- * Note to self: remember to remove  punctuation at the end of the titles
- * when comparing.
  * @author joel
  *
  */
 
 public class ReadXMLFile {
-	static File out_file = new File("/media/datal/Documents/test");
-	static BufferedWriter bw = null;
-	static ArrayList<String> list = null;
+	File out_file = new File("/media/datal/Documents/test");
+	BufferedWriter bw = null;
+	ArrayList<String> file_list = null;
+	File in_file;
+	
+	public ArrayList<String> getFileList(){
+		return file_list;
+	}
+	
+	public ReadXMLFile(File in_f){
+		in_file = in_f;
+	}
+	public ReadXMLFile(File in_f, File out_f){
+		in_file = in_f;
+		out_file = out_f;
+	}
 	
 	
-	
-	  private static void openFile(){
-			try {
-				//String content = "This is the content to write into file";
-				// if file doesnt exists, then create it
-				if (!out_file.exists()) {
-					out_file.createNewFile();
-				}
-	 
-				FileWriter fw = new FileWriter(out_file.getAbsoluteFile());
-				bw = new BufferedWriter(fw);
-			} catch (IOException e) {
-				e.printStackTrace();
+	private void openFile(){
+		try {
+			//String content = "This is the content to write into file";
+			// if file doesnt exists, then create it
+			if (!out_file.exists()) {
+				out_file.createNewFile();
 			}
-	  }
+			FileWriter fw = new FileWriter(out_file.getAbsoluteFile());
+			bw = new BufferedWriter(fw);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	  
-	  
-	  private static void writeFile(String s) throws IOException{
+	  private void writeFile(String s) throws IOException{
 		  bw.write(s);
 	  }
 	  
-	  private static void closeFile() throws IOException{
+	  private void closeFile() throws IOException{
 		  bw.close();
 	  }
 	
@@ -65,87 +72,59 @@ public class ReadXMLFile {
                              .newDocumentBuilder();
  
 	Document doc = dBuilder.parse(file);
-	
-	
-	
-	
-	Nodel<String> root = new Nodel<String>("Root element :" + doc.getDocumentElement().getNodeName());
-
 	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-	//list.insert("Root element :" + doc.getDocumentElement().getNodeName());
-	openFile();
+	
+	ReadXMLFile rxf = new ReadXMLFile(new File("/media/datal/Documents/publications.xml"));
+	
+	rxf.openFile();
 	if (doc.hasChildNodes()) {
-		printNode(doc.getChildNodes(),root);
+		rxf.printNode(doc.getChildNodes());
 	}
-	closeFile();
+	rxf.closeFile();
     } catch (Exception e) {
     	System.out.println(e.getMessage());
     }
   }
   
   
-  private static String Sanitize(String str){
+  private String removeEndPunctuation(String str){
 	  if ((str.endsWith(",")) || str.endsWith(".")) {
 		  str = str.substring(0,str.length()-1);  
 	  }
 	  
 	  if ((str.endsWith(",")) || str.endsWith(".")) {
-		  str = Sanitize(str);
+		  str = removeEndPunctuation(str);
 	  }
 	  
 	  return str;
   }
  
-  private static void printNode(NodeList nodeList, Nodel<String> root) throws DOMException, IOException {
+  private void printNode(NodeList nodeList) throws DOMException, IOException {
     for (int count = 0; count < nodeList.getLength(); count++) {
 		Node tempNode = nodeList.item(count);
 		// make sure it's element node.
 		if (tempNode.getNodeType() == Node.ELEMENT_NODE) {
-			
-	//		list.add("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
-			// get node name and value
-		/*	System.out.println("\nNode Name =" + tempNode.getNodeName() + " [OPEN]");
-			System.out.println("Node Value =" + tempNode.getTextContent());
-			*/
-			
-		//	Nodel<String> bran = nodeTree.branch(new Nodel<String>(tempNode.getNodeName()));
-			
-		//	System.out.println("Node Name =" + tempNode.getNodeName());
-
-		//	System.out.println("Node Value =" + tempNode.getNodeValue());
-		//	System.out.println("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
-			
 			if (pathCorrect(tempNode)){
-				
-				System.out.println("Node value =" + tempNode.getTextContent() + " [CLOSE]");
-				System.out.println("Node value =" + Sanitize(tempNode.getTextContent()) + " [CLOSE]");
+				file_list.add(tempNode.getTextContent());
+			//	System.out.println("Node value =" + removeEndPunctuation(tempNode.getTextContent()) + " [CLOSE]");
 			}
-			
-			
 			if (tempNode.hasAttributes()) {
 				// get attributes names and values
 				NamedNodeMap nodeMap = tempNode.getAttributes();
 				tempNode.getNodeName();
 				for (int i = 0; i < nodeMap.getLength(); i++) {
-	 
 					Node node = nodeMap.item(i);
-				//	System.out.println("attr name : " + node.getNodeName());
-				//	System.out.println("attr value : " + node.getNodeValue());
-		//			lines.add("attr name : " + node.getNodeName() );
-		//			lines.add("attr value : " + node.getNodeValue());
 				}
 			}
-	 
 			if (tempNode.hasChildNodes()) {
 				// loop again if has child nodes
-				printNode(tempNode.getChildNodes(), root);
+				printNode(tempNode.getChildNodes());
 			}
-	//		lines.add("Node Name =" + tempNode.getNodeName() + " [CLOSE]");
 		}
     }
   }
   
-  private static boolean pathCorrect(Node test) throws IOException{
+  private boolean pathCorrect(Node test) throws IOException{
 
 	  Node itemNode = null;
 	  Node orig = test;
@@ -162,10 +141,7 @@ public class ReadXMLFile {
 		  return false;
 	  
 	  NodeList nl = itemNode.getChildNodes();	   
-//	  System.out.println("t "+itemNode.getNodeName());
-
 	  itemNode = nl.item(1); //key node
-//	   System.out.println("test "+itemNode.getNodeName());
 	  if(!itemNode.getNodeName().equals("key"))
 		  return false;	  
 	  
@@ -216,8 +192,7 @@ public class ReadXMLFile {
   
 
   
-  private static void closeFile(BufferedWriter bw) throws IOException{
-	  
+  private void closeFile(BufferedWriter bw) throws IOException{
 		bw.close();
 		System.out.println("Done");
   }

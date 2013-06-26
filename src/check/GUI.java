@@ -12,6 +12,12 @@ import java.util.List;
 public class GUI implements ActionListener {
     private int clicks = 0;
     private JFrame frame = new JFrame();
+    
+    public JFrame getFrame(){
+    	return frame;
+    }
+    
+    
 
     JButton getTitlesButton = new JButton("Get titles");
     JButton getMissingButton = new JButton("Get Missing");
@@ -19,7 +25,7 @@ public class GUI implements ActionListener {
     JButton clearOutputFile = new JButton("Clear output file");
     JTextArea textArea = new JTextArea();
     
-    private JPanel makePanel(){
+    private JPanel makeCVPanel(){
 	    // the panel with the button and text
 
 	    JPanel panel = new JPanel();
@@ -60,13 +66,23 @@ public class GUI implements ActionListener {
 	    return panel;
     }
     
+    private JPanel makeNormalPanel(){
+    	JPanel panel = new JPanel();
+	    panel.setMinimumSize(new Dimension(100,200));
+	    panel.setPreferredSize(new Dimension(100,200));
+	    panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+	    panel.setLayout(new GridLayout(12, 2));	    
+	    return panel;
+    }
+
+    
     
     private void addActionListeners(){
         getTitlesButton.addActionListener(this);
         getMissingButton.addActionListener(this);
     }
     
-    public void setPropTextArea(){
+    private void setPropTextArea(){
         textArea.setColumns(20);
         textArea.setLineWrap(true);
         textArea.setRows(5);
@@ -75,7 +91,7 @@ public class GUI implements ActionListener {
         textArea.setPreferredSize(new Dimension(100,500));
     }
     
-    public void setFrame(JPanel panel){
+    private void setFrame(JPanel panel){
 	    JScrollPane jScrollPane1 = new JScrollPane(textArea);
 	    // set up the frame and display it
 	    frame.add(panel, BorderLayout.NORTH);
@@ -88,12 +104,40 @@ public class GUI implements ActionListener {
 	    frame.setVisible(true);
     }
     
-    public GUI() {
-        // the clickable button
-        addActionListeners();
-        JPanel panel = makePanel();
+    public void reDraw(){
+    	
+    	frame.getContentPane().removeAll();
+    	frame.repaint();
+    }
+    
+    public void makeCVGUI(){
+    	addActionListeners();
+        JPanel panel = makeCVPanel();
         setPropTextArea();
-        setFrame(panel);
+        
+    	MainMenuBar sm = new MainMenuBar();
+    	frame.setJMenuBar(sm);
+        setFrame(panel);       
+    }
+    
+    public void makeNormalGUI(){
+        addActionListeners();
+        JPanel panel = makeNormalPanel();
+        setPropTextArea();
+        
+    	MainMenuBar sm = new MainMenuBar();
+    	frame.setJMenuBar(sm);
+        setFrame(panel);  
+    }
+    
+    public GUI() {
+        addActionListeners();
+        JPanel panel = makeCVPanel();
+        setPropTextArea();
+        
+    	MainMenuBar sm = new MainMenuBar();
+    	frame.setJMenuBar(sm);
+        setFrame(panel);       
     }
     
     
@@ -113,42 +157,51 @@ public class GUI implements ActionListener {
     }
 
     
+    public String oldGetTitles(){
+		String areaText = null;
+	  	Stores stores = null;
+		ArrayList<Store> found = null;
+		ArrayList<Store> unfound = null;
+	  	
+	  	
+		try {
+			Singleton.lines = Singleton.text.readSmallTextFile(Singleton.path_in.getText());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	  	/*areaText = DataProc.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
+	    		Singleton.path_in.getText());
+	  	*/
+	  	stores = DataProc.getTitlesNew(Singleton.lines);
+	  	found = stores.getFound();
+	  	unfound = stores.getUnfound();
+	  	///areaText = DataProc.getBlockFromStores(unfound);
+	  	areaText = DataProc.getTitlesNewTest();
+	  	return areaText;
+    }
+    
+    public ArrayList<String> getTitles(){
+    	ReadXMLFile rxmlf = new ReadXMLFile(new File(Singleton.xml_path.getText()));
+    	return rxmlf.getFileList();
+    }
+    
+    
+    public void refreshTextArea(String areaText){
+    	Singleton.area_text.setText(areaText);
+	    textArea.setWrapStyleWord(true);
+	    textArea.setRows(600);
+	    textArea.setColumns(1);
+	    textArea.setText(areaText);   
+    }
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
     		String areaText = null;
-    	  	Stores stores = null;
-    		ArrayList<Store> found = null;
-    		ArrayList<Store> unfound = null;
-    	  	
-    	  	
-    		try {
-				Singleton.lines = Singleton.text.readSmallTextFile(Singleton.path_in.getText());
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-    	  	/*areaText = DataProc.getTitles(Singleton.lines, Singleton.remove.getText(), Singleton.matches.getText(),
-		    		Singleton.path_in.getText());
-    	  	*/
-    	  	
-    	  	stores = DataProc.getTitlesNew(Singleton.lines);
-    	  	found = stores.getFound();
-    	  	unfound = stores.getUnfound();
-    	  	
-    	  	
-    	  	
-    	  	///areaText = DataProc.getBlockFromStores(unfound);
-    	  	areaText = DataProc.getTitlesNewTest();
-    	  	
-    	  	
-    	  	
-    	  	
-        	Singleton.area_text.setText(areaText);
-		    textArea.setWrapStyleWord(true);
-		    textArea.setRows(600);
-		    textArea.setColumns(1);
-		    textArea.setText(areaText);
+    		//areaText = oldGetTitles();
+    		
+    		refreshTextArea(areaText);
+
     	} else if (e.getActionCommand().equals(getMissingButton.getActionCommand())){
     		if(null != textArea.getText()){
 	    		String areaText = DataProc.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());

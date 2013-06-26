@@ -21,6 +21,7 @@ public class ReadWriteTextFileJDK7 {
 
   //For smaller files
   public List<String> readSmallTextFile(String aFileName) throws IOException {
+	  System.out.println("aFileName: " + aFileName);
 	Path path = Paths.get(aFileName);
     return Files.readAllLines(path, Singleton.ENCODING);
   }
