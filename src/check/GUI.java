@@ -1,6 +1,11 @@
 package check;
 
 import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -12,6 +17,7 @@ import java.util.List;
 public class GUI implements ActionListener {
     private int clicks = 0;
     JFrame frame = new JFrame();
+    
     
     public JFrame getFrame(){
     	return frame;
@@ -46,22 +52,7 @@ public class GUI implements ActionListener {
 
     
     public GUI() {
-        addActionListeners();
-        JPanel panel = NormalMode.makeNormalPanel();
-        setPropTextArea();
-        
-    	MainMenuBar sm = new MainMenuBar();
-    	frame.setJMenuBar(sm);
-    	NormalMode.setNormalFrame(this, panel, "Find Articles Not Uploaded (Normal Mode)");  
-    	/*
-        addActionListeners();
-        JPanel panel = makeCVPanel();
-        setPropTextArea();
-    	MainMenuBar sm = new MainMenuBar();
-    	frame.setJMenuBar(sm);
-        setCVFrame(panel, "Find Articles Not Uploaded (CV Mode)");     	    
-        frame.setVisible(true); */
-  
+    	NormalMode.makeNormalGUI(this);
     }
     
     
@@ -104,27 +95,28 @@ public class GUI implements ActionListener {
 	  	areaText = DataProc.getTitlesNewTest();
 	  	return areaText;
     }
-    
+   /* 
     public ArrayList<String> getTitles(){
-    	ReadXMLFile rxmlf = new ReadXMLFile(new File(Singleton.xml_path.getText()));
+    	ReadXMLFile rxmlf = new ReadXMLFile(Singleton.xml_path.getText());
     	return rxmlf.getFileList();
-    }
+    } */
     
-    
-    public void refreshTextArea(String areaText){
+    public void setTextArea(String areaText){
     	Singleton.area_text.setText(areaText);
-	    textArea.setWrapStyleWord(true);
-	    textArea.setRows(600);
-	    textArea.setColumns(1);
-	    textArea.setText(areaText);   
+    	textArea.setWrapStyleWord(true);
+    	textArea.setRows(600);
+    	textArea.setColumns(1);
+    	textArea.setText(areaText);
     }
+    
+
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
     		String areaText = null;
     		//areaText = oldGetTitles();
     		
-    		refreshTextArea(areaText);
+    		setTextArea(areaText);
 
     	} else if (e.getActionCommand().equals(getMissingButton.getActionCommand())){
     		if(null != textArea.getText()){

@@ -201,6 +201,21 @@ public class DataProc {
 		    }
 		  return s.toString();
 	}
+	  
+	  public static String makeBlockNoRep(List<String> lines){
+		  	StringBuffer s = new StringBuffer();
+		  	String cur = null;
+		  	String prev = null;
+		    for (int i = 0 ; i < lines.size() ; i++){
+		    	cur = lines.get(i).trim();
+		    	if(!cur.equals(prev)){
+			    	s.append(cur);
+			    	s.append("\n\n");
+		    	}
+		    	prev = cur;
+		    }
+		  return s.toString();
+	}
 
 	  public static void printall(String[] a){
 		  for(int i = 0; i<a.length ;i++){

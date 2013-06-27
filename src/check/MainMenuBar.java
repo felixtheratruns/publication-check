@@ -60,7 +60,7 @@ public class MainMenuBar extends JMenuBar{
 		public void actionPerformed(ActionEvent arg0)
 		{
 			Singleton.gui.reDraw();
-			CVMode.makeCVGUI();
+			CVMode.makeCVGUI(Singleton.gui);
 		} 
 	  
   });

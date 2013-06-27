@@ -12,31 +12,31 @@ import javax.swing.JScrollPane;
 
 public class CVMode {
 	
-	   public static void makeCVGUI(){
-	    	Singleton.gui.addActionListeners();
-	        JPanel panel = makeCVPanel();
-	        Singleton.gui.setPropTextArea();
+	   public static void makeCVGUI(GUI gui){
+	    	gui.addActionListeners();
+	        JPanel panel = makeCVPanel(gui);
+	        gui.setPropTextArea();
 	        
 	    	MainMenuBar sm = new MainMenuBar();
-	    	Singleton.gui.frame.setJMenuBar(sm);
-	        setCVFrame(panel,"Find Articles Not Uploaded (CV Mode)");       
+	    	gui.frame.setJMenuBar(sm);
+	        setCVFrame(gui, panel,"Find Articles Not Uploaded (CV Mode)");       
 	    }
 	   
-	    private static void setCVFrame(JPanel panel, String title){
+	    private static void setCVFrame(GUI gui, JPanel panel, String title){
 		    JScrollPane jScrollPane1 = new JScrollPane(Singleton.gui.textArea);
 		    // set up the frame and display it
-		    Singleton.gui.frame.add(panel, BorderLayout.NORTH);
-		    Singleton.gui.frame.add(jScrollPane1,BorderLayout.CENTER);
-		    Singleton.gui.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		    Singleton.gui.frame.setTitle(title);
-		    Singleton.gui.frame.pack();
-		    Singleton.gui.frame.setPreferredSize(new Dimension(400,600));       
-		    Singleton.gui.frame.setMinimumSize(new Dimension(400,600));	    
-		    Singleton.gui.frame.setVisible(true);
+		    gui.frame.add(panel, BorderLayout.NORTH);
+		    gui.frame.add(jScrollPane1,BorderLayout.CENTER);
+		    gui.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		    gui.frame.setTitle(title);
+		    gui.frame.pack();
+		    gui.frame.setPreferredSize(new Dimension(400,600));       
+		    gui.frame.setMinimumSize(new Dimension(400,600));	    
+		    gui.frame.setVisible(true);
 	    }
 	   
 	   
-	    public static JPanel makeCVPanel(){
+	    public static JPanel makeCVPanel(GUI gui){
 		    // the panel with the button and text
 
 		    JPanel panel = new JPanel();
@@ -70,10 +70,10 @@ public class CVMode {
 		    panel.add(sepl);
 		    panel.add(sepr);
 		    
-		    panel.add(Singleton.gui.getTitlesButton);
-		    panel.add(Singleton.gui.getMissingButton);
-		    panel.add(Singleton.gui.saveToOutputFile);
-		    panel.add(Singleton.gui.clearOutputFile);
+		    panel.add(gui.getTitlesButton);
+		    panel.add(gui.getMissingButton);
+		    panel.add(gui.saveToOutputFile);
+		    panel.add(gui.clearOutputFile);
 		    return panel;
 	    }
 }
