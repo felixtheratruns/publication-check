@@ -29,17 +29,17 @@ public class MainMenuBar extends JMenuBar{
   editItem2.add(new JSeparator());
   JMenuItem editItem3 = new JMenuItem("Paste");
   JMenuItem editItem4 = new JMenuItem("Insert");
-  JMenu mode = new JMenu("Mode");
+/*  JMenu mode = new JMenu("Mode");
   JMenuItem normal = new JMenuItem("Normal");
-  JMenuItem cv_read = new JMenuItem("CV read");
+  JMenuItem cv_read = new JMenuItem("CV read"); */
   
   filemenu.add(newItem);
   filemenu.add(openItem);
   filemenu.add(closeItem);
   filemenu.add(saveItem);
-  filemenu.add(mode);
+/*  filemenu.add(mode);
   mode.add(normal);
-  mode.add(cv_read);
+  mode.add(cv_read); */
   
   editmenu.add(editItem1);
   editmenu.add(editItem2);
@@ -47,7 +47,7 @@ public class MainMenuBar extends JMenuBar{
   editmenu.add(editItem4);
   this.add(filemenu);
   this.add(editmenu);
-  
+/*  
   normal.addActionListener(new ActionListener(){ 
 		public void actionPerformed(ActionEvent arg0)
 		{
@@ -64,7 +64,7 @@ public class MainMenuBar extends JMenuBar{
 		} 
 	  
   });
-  
+  */
   
   
   newItem.addActionListener(new ActionListener()
