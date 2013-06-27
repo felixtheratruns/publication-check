@@ -23,7 +23,7 @@ public class CVMode {
 	    }
 	   
 	    private static void setCVFrame(GUI gui, JPanel panel, String title){
-		    JScrollPane jScrollPane1 = new JScrollPane(Singleton.gui.textArea);
+		    JScrollPane jScrollPane1 = new JScrollPane(Singleton.gui.textArea.getJTextArea());
 		    // set up the frame and display it
 		    gui.frame.add(panel, BorderLayout.NORTH);
 		    gui.frame.add(jScrollPane1,BorderLayout.CENTER);

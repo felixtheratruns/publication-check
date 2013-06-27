@@ -27,7 +27,7 @@ public class NormalMode {
     
     public static void setNormalFrame(GUI gui, JPanel panel, String title){
 	   
-    	JScrollPane jScrollPane1 = new JScrollPane(gui.textArea);
+    	JScrollPane jScrollPane1 = new JScrollPane(gui.textArea.getJTextArea());
 	    jScrollPane1.setMinimumSize(new Dimension(400,500));
 	    jScrollPane1.setPreferredSize(new Dimension(400,500));
 

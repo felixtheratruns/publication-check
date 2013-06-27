@@ -27,7 +27,7 @@ public class GUI implements ActionListener {
     JButton getMissingButton = new JButton("Get Missing");
     JButton saveToOutputFile = new JButton("Append to output file");
     JButton clearOutputFile = new JButton("Clear output file");
-    JTextArea textArea = new JTextArea();
+    TextArea textArea = new TextArea();
     
 
     
@@ -37,12 +37,7 @@ public class GUI implements ActionListener {
     }
     
     void setPropTextArea(){
-        textArea.setColumns(20);
-        textArea.setLineWrap(true);
-        textArea.setRows(5);
-        textArea.setEditable(false);
-        textArea.setMinimumSize(new Dimension(100,500));
-        textArea.setPreferredSize(new Dimension(100,500));
+    	textArea.setProperties();
     }
    
     public void reDraw(){
@@ -102,11 +97,9 @@ public class GUI implements ActionListener {
     } */
     
     public void setTextArea(String areaText){
-    	Singleton.area_text.setText(areaText);
-    	textArea.setWrapStyleWord(true);
-    	textArea.setRows(600);
-    	textArea.setColumns(1);
     	textArea.setText(areaText);
+    	
+
     }
     
 
