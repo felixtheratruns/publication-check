@@ -96,27 +96,28 @@ public class GUI implements ActionListener {
     	return rxmlf.getFileList();
     } */
     
-    public void setTextArea(String areaText){
-    	textArea.setText(areaText);
-    	
-
+    public void setTextArea(ArrayList<String> lines){
+    	String s = NormalMode.getNonRepeatTitles(lines);
+    	textArea.setText(s);
     }
     
 
     // process the button clicks
     public void actionPerformed(ActionEvent e) {
     	if(e.getActionCommand().equals(getTitlesButton.getActionCommand())){   	
-    		String areaText = null;
-    		//areaText = oldGetTitles();
+    		/*String areaText = null;
+    		areaText = oldGetTitles();
     		
-    		setTextArea(areaText);
+    		setTextArea(areaText); */
 
     	} else if (e.getActionCommand().equals(getMissingButton.getActionCommand())){
     		if(null != textArea.getText()){
-	    		String areaText = DataProc.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
-	    		textArea.setText(areaText);
+	    	//	String areaText = DataProc.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
+	    		ArrayList<String> areaTextList = DataProc.getMissingTitles(Singleton.titles, Singleton.uploaded_pub_list.getText());
+	    		
+	    		textArea.setTextWrap(areaTextList);
 	    		try {
-					Singleton.text.writeSmallTextFile(Singleton.titles, Singleton.path_out.getText());
+					Singleton.text.writeSmallTextFile(Singleton.titles, new File(Singleton.path_out.getText()));
 	    		} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

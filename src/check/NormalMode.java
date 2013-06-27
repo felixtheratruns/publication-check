@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -76,13 +77,32 @@ public class NormalMode {
 	    return panel;
     }
     
-    
+	public static String getNonRepeatTitles(ArrayList<String> ar){
+	  	return makeBlockNoRep(ar);
+	}
+   
+	  
+	  
+	  public static String makeBlockNoRep(List<String> lines){
+		  	StringBuffer s = new StringBuffer();
+		  	String cur = null;
+		  	String prev = null;
+		    for (int i = 0 ; i < lines.size() ; i++){
+		    	cur = lines.get(i).trim();
+		    	if(!cur.equals(prev)){
+			    	s.append(cur);
+			    	s.append("\n\n");
+		    	}
+		    	prev = cur;
+		    }
+		  return s.toString();
+	}
     public static void makeNormalGUI(final GUI gui){
     	getTitles.addActionListener(new ActionListener(){
 
     		@Override
     		public void actionPerformed(ActionEvent e) {
-    			gui.setTextArea(getNonRepeatTitles());
+    			gui.setTextArea(NormalMode.getTitlesNew());
     		}
     		
     	});
@@ -100,10 +120,27 @@ public class NormalMode {
     	return rxmlf.getFileList();
     }
 
-    
-    public static String getNonRepeatTitles(){
-    	return DataProc.makeBlockNoRep(getTitlesNew());
+    /*
+    public static String makeBlockNoRep(List<String> lines){
+	  	StringBuffer s = new StringBuffer();
+	  	String cur = null;
+	  	String prev = null;
+	    for (int i = 0 ; i < lines.size() ; i++){
+	    	cur = lines.get(i).trim();
+	    	if(!cur.equals(prev)){
+		    	s.append(cur);
+		    	s.append("\n\n");
+	    	}
+	    	prev = cur;
+	    }
+	  return s.toString();
     }
+    */
 
 
+    
+    
+    
 }
+
+

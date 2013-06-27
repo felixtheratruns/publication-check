@@ -1,6 +1,8 @@
 package check;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JTextArea;
 
@@ -25,10 +27,15 @@ public class TextArea {
     	jta.setText(areaText);
 	}
 	
+	public void setTextWrap(ArrayList<String> areaText){
+		String s = NormalMode.makeBlockNoRep(areaText);
+		setText(s);
+	}
+	
 	public String getText(){
 		return jta.getText();
 	}
-	
+	  
 	public JTextArea getJTextArea(){
 		return jta;
 	}

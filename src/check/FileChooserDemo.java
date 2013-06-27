@@ -104,7 +104,7 @@ public class FileChooserDemo extends JPanel
                 log.append("Saving: " + file.getName() + "." + newline);
                 System.out.println(file.getAbsolutePath());
                 try {
-					Singleton.text.writeSmallTextFile(Singleton.lines, file.getAbsolutePath());
+					Singleton.text.writeSmallTextFile(Singleton.lines, file);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

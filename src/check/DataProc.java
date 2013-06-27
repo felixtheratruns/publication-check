@@ -1,5 +1,6 @@
 package check;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -185,7 +186,7 @@ public class DataProc {
 		    	}
 		    }  
 		   try {
-			Singleton.text.writeSmallTextFile(lines, Singleton.path_out.getText());
+			Singleton.text.writeSmallTextFile(lines, new File(Singleton.path_out.getText()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,20 +203,7 @@ public class DataProc {
 		  return s.toString();
 	}
 	  
-	  public static String makeBlockNoRep(List<String> lines){
-		  	StringBuffer s = new StringBuffer();
-		  	String cur = null;
-		  	String prev = null;
-		    for (int i = 0 ; i < lines.size() ; i++){
-		    	cur = lines.get(i).trim();
-		    	if(!cur.equals(prev)){
-			    	s.append(cur);
-			    	s.append("\n\n");
-		    	}
-		    	prev = cur;
-		    }
-		  return s.toString();
-	}
+
 
 	  public static void printall(String[] a){
 		  for(int i = 0; i<a.length ;i++){
@@ -255,8 +243,8 @@ public class DataProc {
 		  return retVar;
 	  }  
 	 
-	  public static String getMissingTitles(List<String> titles, String text){
-		  StringBuffer s = new StringBuffer();
+	  public static ArrayList<String> getMissingTitles(List<String> titles, String text){
+	//	  StringBuffer s = new StringBuffer();
 		  text = text.toLowerCase();
 		  
 		  ArrayList<String> lines = new ArrayList<String>();
@@ -265,19 +253,33 @@ public class DataProc {
 				  System.out.println("found: " + titles.get(i));
 			  } else {
 				  lines.add(titles.get(i));
-				  s.append(titles.get(i));
+			/*	  s.append(titles.get(i));
 				  s.append("\n");
-				  s.append("\n");
+				  s.append("\n"); */
 			  }
 		  }
-		   try {
+		  
+		  
+
+	/*	  
+		  try {
 			Singleton.text.writeSmallTextFile(lines, Singleton.path_out.getText());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//  Singleton.lns = lines;
-		  return s.toString();
+		  */
+		  
+		  return lines;
+	  }
+	  
+	  public void writeToFile(ArrayList<String> lines, File file){
+		  try {
+			Singleton.text.writeSmallTextFile(lines, file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  }
 
 }

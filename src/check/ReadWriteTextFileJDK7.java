@@ -1,6 +1,7 @@
 package check;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -26,8 +27,8 @@ public class ReadWriteTextFileJDK7 {
     return Files.readAllLines(path, Singleton.ENCODING);
   }
   
-  void writeSmallTextFile(List<String> aLines, String aFileName) throws IOException {
-    Path path = Paths.get(aFileName);
+  void writeSmallTextFile(List<String> aLines, File file) throws IOException {
+    Path path = Paths.get(file.getPath());
     Files.write(path, aLines, Singleton.ENCODING);
   }
   

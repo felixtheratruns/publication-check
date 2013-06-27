@@ -1,5 +1,6 @@
 package check;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class FilterFile {
 		    	}
 		    }  
 		   try {
-			Singleton.text.writeSmallTextFile(lines, Singleton.path_out.getText());
+			Singleton.text.writeSmallTextFile(lines, new File(Singleton.path_out.getText()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -111,7 +112,7 @@ public class FilterFile {
 			  }
 		  }
 		   try {
-			Singleton.text.writeSmallTextFile(lines, Singleton.path_out.getText());
+			Singleton.text.writeSmallTextFile(lines, new File(Singleton.path_out.getText()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
