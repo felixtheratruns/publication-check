@@ -19,11 +19,11 @@ public class MainMenuBar extends JMenuBar{
   filemenu.add(new JSeparator());
   JMenu editmenu = new JMenu("Edit");
   editmenu.add(new JSeparator());
-  JMenuItem newItem = new JMenuItem("New");
+  JMenuItem newItem = new JMenuItem("Refresh");
   JMenuItem openItem = new JMenuItem("Open");
   JMenuItem closeItem = new JMenuItem("Close");
   closeItem.add(new JSeparator());
-  JMenuItem saveItem = new JMenuItem("Save");
+  JMenuItem saveItem = new JMenuItem("Save Settings");
   JMenuItem editItem1 = new JMenuItem("Cut");
   JMenuItem editItem2 = new JMenuItem("Copy");
   editItem2.add(new JSeparator());
@@ -32,7 +32,6 @@ public class MainMenuBar extends JMenuBar{
   JMenu mode = new JMenu("Mode");
   JMenuItem normal = new JMenuItem("Normal");
   JMenuItem cv_read = new JMenuItem("CV read");
-  
   
   filemenu.add(newItem);
   filemenu.add(openItem);
@@ -48,15 +47,12 @@ public class MainMenuBar extends JMenuBar{
   editmenu.add(editItem4);
   this.add(filemenu);
   this.add(editmenu);
-//  frame.setJMenuBar(menubar);
-//  frame.setSize(400,400);
-//  frame.setVisible(true);
   
   normal.addActionListener(new ActionListener(){ 
 		public void actionPerformed(ActionEvent arg0)
 		{
 			Singleton.gui.reDraw();
-			Singleton.gui.makeNormalGUI();
+			NormalMode.makeNormalGUI(Singleton.gui);
 		} 
   });
 
@@ -64,7 +60,7 @@ public class MainMenuBar extends JMenuBar{
 		public void actionPerformed(ActionEvent arg0)
 		{
 			Singleton.gui.reDraw();
-			Singleton.gui.makeCVGUI();
+			CVMode.makeCVGUI();
 		} 
 	  
   });

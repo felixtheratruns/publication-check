@@ -51,19 +51,6 @@ public class Singleton {
 	//public static String[] setting_keys = 	{contains.getName(), matches.getName(), path_out.getName(), path_pub.getName(), path_in.getName(), contains_name.getName()};
 	public static void setSettings(String name){
 		System.out.println("string name:" + name);
-	//	System.out.println(global_settings);
-	//	HashMap<String, String> props = global_settings.get("Settings");	
-		
-		
-		//for (String key : props.keySet()) {
-			//System.out.println(key);
-		//}
-		
-		
-		
-		
-		
-		//Set names = global_settings.keySet();
 		
 		JSONObject json_set = (JSONObject)json_object.get("Settings"); 
 		System.out.println("json set...." + json_set);
@@ -89,7 +76,7 @@ public class Singleton {
 		setting_names.addAll(json_set.keySet());
 		setting_keys.addAll(json_name.keySet());
 		
-		setGeneralSettings(general_settings_key);
+	///	setGeneralSettings(general_settings_key);
 		
 		
 		System.out.println("l: " + json_name.get(remove.getId()));
@@ -100,7 +87,7 @@ public class Singleton {
 		System.out.println("l: " + json_name.get(remove_name.getId()));
 	}
 	
-	private static void setGeneralSettings(String str){
+	public static void setGeneralSettings(String str){
 		JSONObject json = (JSONObject) json_object.get(settings_key);	
 		System.out.println("json string:" + json.toString());
 		JSONObject json2 = (JSONObject) json.get(general_settings_key);

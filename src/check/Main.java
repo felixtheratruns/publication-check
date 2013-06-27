@@ -10,11 +10,6 @@ import javax.swing.JTextField;
 
 
 public class Main {
-	//  final static Charset ENCODING = StandardCharsets.UTF_8;
-	//  final static String OUTPUT_FILE_NAME = "/home/joel/proj/out";
-	//  final static String FILE_NAME = "/home/joel/proj/rai_pub2";
-	 // final static String 
-	
 	  public static void main(String... aArgs) throws IOException{
 			
 		Singleton.ENCODING = StandardCharsets.UTF_8;
@@ -42,6 +37,7 @@ public class Main {
 		Singleton.global_settings = settings.getFprop();
 		
 		Singleton.setSettings("Rai");
+		Singleton.setGeneralSettings(Singleton.general_settings_key);
     	Singleton.titles = new ArrayList<String>();
 		Singleton.uploaded_pub_list = new JTextField("");
 		
