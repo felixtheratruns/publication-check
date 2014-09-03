@@ -1,0 +1,1302 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="devsite">
+  
+
+  <head>
+    <meta charset="utf-8" />
+    <script>(function(){function d(a){this.t={};this.tick=function(a,c,b){var d=void 0!=b?b:(new Date).getTime();this.t[a]=[d,c];if(void 0==b)try{window.console.timeStamp("CSI/"+a)}catch(e){}};this.tick("start",null,a)}var a;window.performance&&(a=window.performance.timing);var f=a?new d(a.responseStart):new d;window.jstiming={Timer:d,load:f};if(a){var c=a.navigationStart,e=a.responseStart;0<c&&e>=c&&(window.jstiming.srt=e-c)}if(a){var b=window.jstiming.load;0<c&&e>=c&&(b.tick("_wtsrt",void 0,c),b.tick("wtsrt_",
+"_wtsrt",e),b.tick("tbsd_","wtsrt_"))}try{a=null,window.chrome&&window.chrome.csi&&(a=Math.floor(window.chrome.csi().pageT),b&&0<c&&(b.tick("_tbnd",void 0,window.chrome.csi().startE),b.tick("tbnd_","_tbnd",c))),null==a&&window.gtbExternal&&(a=window.gtbExternal.pageT()),null==a&&window.external&&(a=window.external.pageT,b&&0<c&&(b.tick("_tbnd",void 0,window.external.startE),b.tick("tbnd_","_tbnd",c))),a&&(window.jstiming.pt=a)}catch(g){}})();window.gettext=function(d){return d};window.interpolate=function(d,a){return d.replace(/%s/g,function(){return String(a.shift())})};
+</script>
+      <link rel="stylesheet" type="text/css" href="/_static/07491c0cdc/css/screen-maia.css" />
+      <link href='//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,500,500italic,300,300italic' rel='stylesheet' type='text/css'>
+    
+      
+        <link rel="stylesheet" type="text/css" href="/_static/07491c0cdc/css/screen-docs.css" />
+      
+      
+      <link rel="stylesheet" type="text/css" id="screen-foot" data-href="/_static/07491c0cdc/css/screen-foot.css" />
+    
+    <link rel="shortcut icon" href="/_static/07491c0cdc/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/_static/07491c0cdc/images/apple-touch-icon.png">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    
+    
+    
+      <link rel="search" type="application/opensearchdescription+xml" title="Google Developers" href="/search/opensearch.xml">
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="/_static/07491c0cdc/js/html5shim/html5.js"></script>
+    <![endif]-->
+
+    
+  <script type="text/javascript">
+    var contentTimer = new window.jstiming.Timer();
+
+    var ___gcfg = ___gcfg || {};
+    ___gcfg.lang = 'en';
+  </script>
+  
+  <title>Local Unit Testing for Java - Java &mdash; Google Developers</title>
+  
+  
+  
+  
+
+  
+    
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5CVQBG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5CVQBG');</script>
+<!-- End Google Tag Manager -->
+    
+  
+
+  
+  
+  
+  
+
+
+
+    
+
+    <style>
+    
+    </style>
+  </head>
+  <body class=" slim   two-column docs normal-width">
+  <div class="maia-max">
+
+    
+    <div id="sandbar">
+      
+        
+          
+
+
+
+
+
+<div id="maia-header" class="maia-header">
+  <header id="googlebar">
+    <div id="logo-wrapper">
+      <a id="logo" href="/">
+        <img src="/_static/07491c0cdc/images/developers-logo.svg" alt="Google"/>
+      </a>
+      <script>
+      if (navigator.userAgent.match(/msie/i) && navigator.appVersion.indexOf['8'] ==0) {
+        $('#gc-logo img').attr({src:'/_static/07491c0cdc/images/developers-logo.png'});
+      }
+      </script>
+    </div>
+
+    <div id="search-wrapper" class="head-sec search-wrapper2">
+      <form class="search" action="/search/results" method="GET" id="top-search">
+        <div id="searchbox" class="searchbox">
+           
+           <input type="text" name="q" class="q" id="q" value="" placeholder='Search' autocomplete="off" />
+        </div>
+        <button id="search-button" class="button button-blue big">
+          <img src="/_static/images/v2/search.png" alt="Search">
+        </button>
+        
+          <input type="hidden" name="p" id="search_project" value="/appengine/docs/java" data-project-name="Java" data-project-path="/appengine/docs/java" data-query-match=""/>
+        
+        
+
+
+  
+  <input type="hidden" id="suggest-category-label-2" value="Pages in Java" />
+  
+  <input type="hidden" id="suggest-category-label-3" value="Reference in Java" />
+
+
+<input type="hidden" id="suggest-category-label-1" value="Products" />
+
+<input type="hidden" id="suggest-all-results-label" value="See all results for" />
+
+      </form>
+    </div>
+
+    <div id="social-wrapper" class="social">
+      
+      <span class='signed-out'>
+        <a href="https://www.google.com/accounts/ServiceLogin?service=ahsid&amp;passive=true&amp;continue=https://developers.google.com/appengine/docs/java/tools/localunittesting&amp;ltmpl=" id="loginLink" class="button">Sign in</a>
+      </span>
+      
+    </div>
+  </header>
+</div>
+
+<script>
+  if (window.jQuery) {
+    $(document).ready(function() {
+      if (window.devsite && window.devsite.search) {
+        window.devsite.search.init('en')
+      }
+    });
+  }
+</script>
+
+        
+      
+    </div><!-- end div.sandbar -->
+    
+
+    
+    <div class="kd-butterbar">
+      <span>
+        <span class="message"></span>
+        
+        <a href="#" class="kd-butterbar-dismiss">Hide</a>
+      </span>
+    </div>
+    
+    <div id="gc-wrapper" itemscope itemtype="http://schema.org/Article">
+      
+        
+          <input class="gc-analytics" type="hidden" value="UA-24532603-1" />
+        
+          <input class="gc-analytics" type="hidden" value="UA-49880327-1" />
+        
+      
+
+       <!-- if site.theme == 'maia' or site.theme == 'maia-cloud' -->
+      
+
+<div id="gc-appnav" class="maia-aux">
+  <ol class="breadcrumbs">
+    
+    <li><a href="/products/">Products</a></li>
+    
+    <li><a href="/cloud">Google Cloud Platform</a></li>
+    
+    <li><a href="/appengine/">Google App Engine</a></li>
+    
+    <li><a href="/appengine/docs/java">Java</a></li>
+    
+  </ol>
+</div>
+
+
+
+      
+      
+      
+          <div class="maia-aux" id="gc-appbar">
+
+          
+          
+
+<h1><a href="/appengine/docs/java">Java</a></h1>
+
+
+
+<div class="plusone-container" style="height:27px">
+  <div class="g-plusone"
+    data-href="https://developers.google.com/appengine/docs/java/tools/localunittesting?csw=1"
+    data-size="medium"
+    data-source="google:developers"></div>
+</div>
+
+
+
+<div class="google-feedback-container">
+  
+  <a href="" class="google-feedback" data-p="70425" data-b="Documentation" data-context="">Feedback on this document</a>
+</div>
+
+
+
+ 
+
+          
+        </div>
+      
+      
+
+      
+        
+          <div id="gc-main" class="main">
+        
+        
+  
+  
+      
+      
+      <div id="gc-sidebar" class="wide">
+        
+
+  
+
+
+
+  <nav class="gc-toc"><ul><li class=""><a href="/appengine" title="App Engine Home" data-title="App Engine Home"><span>App Engine Home</span></a></li><li class=""><span class="tlw-title" data-title="Java">Java</span><ul><li class=""><a href="/appengine/docs/java" title="Runtime Environment" data-title="Runtime Environment"><span>Runtime Environment</span></a></li><li class=""><a href="/appengine/docs/java/requests" title="Handling Requests" data-title="Handling Requests"><span>Handling Requests</span></a></li><li class=""><span class="tlw-title" data-title="Java Tutorial">Java Tutorial</span><ul><li class=""><a href="/appengine/docs/java/gettingstarted/introduction" title="1. Introduction" data-title="1. Introduction"><span>1. Introduction</span></a></li><li class=""><a href="/appengine/docs/java/gettingstarted/setup" title="2. Tutorial Setup" data-title="2. Tutorial Setup"><span>2. Tutorial Setup</span></a></li><li class=""><a href="/appengine/docs/java/gettingstarted/creating" title="3. Creating and Configuring" data-title="3. Creating and Configuring"><span>3. Creating and Configuring</span></a></li><li class=""><a href="/appengine/docs/java/gettingstarted/ui_and_code" title="4. Adding Code and UI" data-title="4. Adding Code and UI"><span>4. Adding Code and UI</span></a></li><li class=""><a href="/appengine/docs/java/gettingstarted/usingdatastore" title="5. Storing Data" data-title="5. Storing Data"><span>5. Storing Data</span></a></li><li class=""><a href="/appengine/docs/java/gettingstarted/uploading" title="6. Uploading Your Application" data-title="6. Uploading Your Application"><span>6. Uploading Your Application</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Modules">Modules</span><ul><li class=""><a href="/appengine/docs/java/modules/" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/modules/routing" title="Routing Requests to Modules" data-title="Routing Requests to Modules"><span>Routing Requests to Modules</span></a></li><li class=""><a href="/appengine/docs/java/modules/converting" title="Converting Apps to Modules" data-title="Converting Apps to Modules"><span>Converting Apps to Modules</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/modules/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Storing Data">Storing Data</span><ul><li class=""><a href="/appengine/docs/java/storage" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><span class="tlw-title" data-title="Datastore">Datastore</span><ul><li class=""><a href="/appengine/docs/java/datastore" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/datastore/entities" title="Entities, Properties, and Keys" data-title="Entities, Properties, and Keys"><span>Entities, Properties, and Keys</span></a></li><li class=""><a href="/appengine/docs/java/datastore/queries" title="Datastore Queries" data-title="Datastore Queries"><span>Datastore Queries</span></a></li><li class=""><a href="/appengine/docs/java/datastore/projectionqueries" title="Projection Queries" data-title="Projection Queries"><span>Projection Queries</span></a></li><li class=""><a href="/appengine/docs/java/datastore/indexes" title="Datastore Indexes" data-title="Datastore Indexes"><span>Datastore Indexes</span></a></li><li class=""><a href="/appengine/docs/java/datastore/transactions" title="Datastore Transactions" data-title="Datastore Transactions"><span>Datastore Transactions</span></a></li><li class=""><a href="/appengine/docs/java/datastore/structuring_for_strong_consistency" title="Structuring Data for Strong Consistency" data-title="Structuring Data for Strong Consistency"><span>Structuring Data for Strong Consistency</span></a></li><li class=""><a href="/appengine/docs/java/datastore/metadataqueries" title="Metadata" data-title="Metadata"><span>Metadata</span></a></li><li class=""><a href="/appengine/docs/java/datastore/stats" title="Datastore Statistics" data-title="Datastore Statistics"><span>Datastore Statistics</span></a></li><li class=""><a href="/appengine/docs/java/datastore/async" title="Async Datastore API" data-title="Async Datastore API"><span>Async Datastore API</span></a></li><li class=""><a href="/appengine/docs/java/datastore/callbacks" title="Datastore Callbacks" data-title="Datastore Callbacks"><span>Datastore Callbacks</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/datastore/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li><li class=""><span class="tlw-title" data-title="JDO">JDO</span><ul><li class=""><a href="/appengine/docs/java/datastore/jdo/overview" title="Overview (JDO 2.3)" data-title="Overview (JDO 2.3)"><span>Overview (JDO 2.3)</span></a></li><li class=""><a href="/appengine/docs/java/datastore/jdo/overview-dn2" title="Overview (JDO 3.0)" data-title="Overview (JDO 3.0)"><span>Overview (JDO 3.0)</span></a></li><li class=""><a href="/appengine/docs/java/datastore/jdo/dataclasses" title="Defining Data Classes with JDO" data-title="Defining Data Classes with JDO"><span>Defining Data Classes with JDO</span></a></li><li class=""><a href="/appengine/docs/java/datastore/jdo/creatinggettinganddeletingdata" title="Creating, Getting, and Deleting Data in JDO" data-title="Creating, Getting, and Deleting Data in JDO"><span>Creating, Getting, and Deleting Data in JDO</span></a></li><li class=""><a href="/appengine/docs/java/datastore/jdo/relationships" title="Entity Relationships in JDO" data-title="Entity Relationships in JDO"><span>Entity Relationships in JDO</span></a></li><li class=""><a href="/appengine/docs/java/datastore/jdo/queries" title="Queries in JDO" data-title="Queries in JDO"><span>Queries in JDO</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="JPA">JPA</span><ul><li class=""><a href="/appengine/docs/java/datastore/jpa/overview" title="Overview (JPA 1.0)" data-title="Overview (JPA 1.0)"><span>Overview (JPA 1.0)</span></a></li><li class=""><a href="/appengine/docs/java/datastore/jpa/overview-dn2" title="Overview (JPA 2.0)" data-title="Overview (JPA 2.0)"><span>Overview (JPA 2.0)</span></a></li></ul></li></ul></li><li class=""><a href="/appengine/docs/java/cloud-sql/" title="Google Cloud SQL" data-title="Google Cloud SQL"><span>Google Cloud SQL</span></a></li><li class=""><span class="tlw-title" data-title="Google Cloud Storage Client Library">Google Cloud Storage Client Library</span><ul><li class=""><a href="/appengine/docs/java/googlecloudstorageclient" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/googlecloudstorageclient/download" title="Download" data-title="Download"><span>Download</span></a></li><li class=""><a href="/appengine/docs/java/googlecloudstorageclient/activate" title="Activate" data-title="Activate"><span>Activate</span></a></li><li class=""><a href="/appengine/docs/java/googlecloudstorageclient/getstarted" title="Getting Started" data-title="Getting Started"><span>Getting Started</span></a></li><li class=""><a href="/appengine/docs/java/googlecloudstorageclient/migrate" title="Migrating from the Google Cloud Storage API" data-title="Migrating from the Google Cloud Storage API"><span>Migrating from the Google Cloud Storage API</span></a></li><li class=""><a href="/appengine/docs/java/googlecloudstorageclient/javadoc" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Blobstore">Blobstore</span><ul><li class=""><a href="/appengine/docs/java/blobstore" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/blobstore/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li></ul></li><li class=""><span class="tlw-title" data-title="Services">Services</span><ul><li class=""><a href="/appengine/docs/java/apis" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><span class="tlw-title" data-title="App Identity">App Identity</span><ul><li class=""><a href="/appengine/docs/java/appidentity" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/appidentity/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Capabilities">Capabilities</span><ul><li class=""><a href="/appengine/docs/java/capabilities" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/capabilities/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Channel">Channel</span><ul><li class=""><a href="/appengine/docs/java/channel" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/channel/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li><li class=""><a href="/appengine/docs/java/channel/javascript" title="JavaScript Reference" data-title="JavaScript Reference"><span>JavaScript Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Google Cloud Endpoints">Google Cloud Endpoints</span><ul><li class=""><a href="/appengine/docs/java/endpoints" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><span class="tlw-title" data-title="Getting Started">Getting Started</span><ul><li class=""><a href="/appengine/docs/java/endpoints/getstarted/" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><span class="tlw-title" data-title="Backend API Tutorial">Backend API Tutorial</span><ul><li class=""><a href="/appengine/docs/java/endpoints/getstarted/backend" title="1. Overview" data-title="1. Overview"><span>1. Overview</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/backend/setup" title="2. Setup" data-title="2. Setup"><span>2. Setup</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/backend/hello_world" title="3. Hello World" data-title="3. Hello World"><span>3. Hello World</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/backend/helloendpoints" title="4. A More Complete Backend API" data-title="4. A More Complete Backend API"><span>4. A More Complete Backend API</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/backend/code_walkthrough" title="5. Code Walkthrough" data-title="5. Code Walkthrough"><span>5. Code Walkthrough</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Web Client Tutorial">Web Client Tutorial</span><ul><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/js" title="1. Overview" data-title="1. Overview"><span>1. Overview</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/js/setup" title="2. Setup" data-title="2. Setup"><span>2. Setup</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/js/client_ui" title="3. Adding the Client UI" data-title="3. Adding the Client UI"><span>3. Adding the Client UI</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/js/add_javascript" title="4. Adding the Javascript" data-title="4. Adding the Javascript"><span>4. Adding the Javascript</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/js/add_post" title="5. Adding a Simple POST" data-title="5. Adding a Simple POST"><span>5. Adding a Simple POST</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/js/add_auth" title="6. Adding a Request Using OAuth" data-title="6. Adding a Request Using OAuth"><span>6. Adding a Request Using OAuth</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Android Client Tutorial">Android Client Tutorial</span><ul><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android" title="1. Overview" data-title="1. Overview"><span>1. Overview</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android/setup" title="2. Setup" data-title="2. Setup"><span>2. Setup</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android/configure" title="3. Creating and Configuring your Project" data-title="3. Creating and Configuring your Project"><span>3. Creating and Configuring your Project</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android/create_app" title="4. Creating a Simple Android App" data-title="4. Creating a Simple Android App"><span>4. Creating a Simple Android App</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android/connect_backend" title="5. Connecting Your App to the Backend" data-title="5. Connecting Your App to the Backend"><span>5. Connecting Your App to the Backend</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android/add_auth_ids" title="6. Authentication: Adding Client IDs to Backend and Library" data-title="6. Authentication: Adding Client IDs to Backend and Library"><span>6. Authentication: Adding Client IDs to Backend and Library</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/getstarted/clients/android/add_auth_code" title="7. Authentication: Adding Auth Support in Client Project" data-title="7. Authentication: Adding Auth Support in Client Project"><span>7. Authentication: Adding Auth Support in Client Project</span></a></li></ul></li></ul></li><li class=""><span class="tlw-title" data-title="Coding the API">Coding the API</span><ul><li class=""><a href="/appengine/docs/java/endpoints/annotations" title="Annotating Your Code" data-title="Annotating Your Code"><span>Annotating Your Code</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/multiclass" title="Implementing a Multiclass API" data-title="Implementing a Multiclass API"><span>Implementing a Multiclass API</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/auth" title="Using Authentication" data-title="Using Authentication"><span>Using Authentication</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/required_files" title="Required Files and Configuration" data-title="Required Files and Configuration"><span>Required Files and Configuration</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/paramreturn_types" title="Parameters and Return Types" data-title="Parameters and Return Types"><span>Parameters and Return Types</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/exceptions" title="Exceptions and HTTP" data-title="Exceptions and HTTP"><span>Exceptions and HTTP</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/javadoc" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><a href="/appengine/docs/java/endpoints/test_deploy" title="Testing and Deploying" data-title="Testing and Deploying"><span>Testing and Deploying</span></a></li><li class=""><span class="tlw-title" data-title="Generating Client Libraries">Generating Client Libraries</span><ul><li class=""><a href="/appengine/docs/java/endpoints/gen_clients" title="Generating Client Libraries" data-title="Generating Client Libraries"><span>Generating Client Libraries</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/endpoints_tool" title="Using the Endpoints Command Line Tool" data-title="Using the Endpoints Command Line Tool"><span>Using the Endpoints Command Line Tool</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Using Endpoints in Clients">Using Endpoints in Clients</span><ul><li class=""><a href="/appengine/docs/java/endpoints/consume_js" title="JavaScript Client" data-title="JavaScript Client"><span>JavaScript Client</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/consume_android" title="Android Client" data-title="Android Client"><span>Android Client</span></a></li><li class=""><a href="/appengine/docs/java/endpoints/consume_ios" title="IOS Client" data-title="IOS Client"><span>IOS Client</span></a></li></ul></li></ul></li><li class=""><span class="tlw-title" data-title="Images">Images</span><ul><li class=""><a href="/appengine/docs/java/images" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/images/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Logs">Logs</span><ul><li class=""><a href="/appengine/docs/java/logs" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/log/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Mail">Mail</span><ul><li class=""><a href="/appengine/docs/java/mail" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/mail/sendgrid" title="Bulk Mail With Analytics via SendGrid" data-title="Bulk Mail With Analytics via SendGrid"><span>Bulk Mail With Analytics via SendGrid</span></a></li><li class=""><a href="/appengine/docs/java/mail/usingjavamail" title="Using JavaMail to Send Mail" data-title="Using JavaMail to Send Mail"><span>Using JavaMail to Send Mail</span></a></li><li class=""><a href="/appengine/docs/java/mail/receiving" title="Receiving Mail" data-title="Receiving Mail"><span>Receiving Mail</span></a></li><li class=""><a href="/appengine/docs/java/mail/bounce" title="Receiving Bounce Notification" data-title="Receiving Bounce Notification"><span>Receiving Bounce Notification</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/mail/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Memcache">Memcache</span><ul><li class=""><a href="/appengine/docs/java/memcache" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/memcache/usingjcache" title="Using JCache" data-title="Using JCache"><span>Using JCache</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/memcache/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Multitenancy">Multitenancy</span><ul><li class=""><a href="/appengine/docs/java/multitenancy" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/multitenancy/multitenancy" title="Multitenancy with Namespaces" data-title="Multitenancy with Namespaces"><span>Multitenancy with Namespaces</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/NamespaceManager" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="OAuth">OAuth</span><ul><li class=""><a href="/appengine/docs/java/oauth" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/oauth/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Prospective Search">Prospective Search</span><ul><li class=""><a href="/appengine/docs/java/prospectivesearch" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/prospectivesearch/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Search">Search</span><ul><li class=""><a href="/appengine/docs/java/search" title="Documents and Indexes" data-title="Documents and Indexes"><span>Documents and Indexes</span></a></li><li class=""><a href="/appengine/docs/java/search/query_strings" title="Query Strings" data-title="Query Strings"><span>Query Strings</span></a></li><li class=""><a href="/appengine/docs/java/search/options" title="Query and Sorting Options" data-title="Query and Sorting Options"><span>Query and Sorting Options</span></a></li><li class=""><a href="/appengine/docs/java/search/results" title="Handling Search Results" data-title="Handling Search Results"><span>Handling Search Results</span></a></li><li class=""><a href="/appengine/docs/java/search/best_practices" title="Best Practices" data-title="Best Practices"><span>Best Practices</span></a></li><li class=""><a href="/appengine/docs/java/search/devserver" title="Using the Java Development Server" data-title="Using the Java Development Server"><span>Using the Java Development Server</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/search/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="SMS and Voice">SMS and Voice</span><ul><li class=""><a href="/appengine/docs/java/sms/twilio" title="SMS and Voice Services via Twilio" data-title="SMS and Voice Services via Twilio"><span>SMS and Voice Services via Twilio</span></a></li></ul></li><li class=""><a href="/appengine/docs/java/sockets" title="Sockets" data-title="Sockets"><span>Sockets</span></a></li><li class=""><span class="tlw-title" data-title="Task Queues">Task Queues</span><ul><li class=""><a href="/appengine/docs/java/taskqueue" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/overview-push" title="Using Push Queues" data-title="Using Push Queues"><span>Using Push Queues</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/overview-pull" title="Using Pull Queues" data-title="Using Pull Queues"><span>Using Pull Queues</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/taskqueue/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li><li class="experimental"><span class="tlw-title" data-title="REST">REST<sup>Experimental!</sup></span><ul><li class=""><a href="/appengine/docs/java/taskqueue/rest/" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/about_auth" title="About Authorization" data-title="About Authorization"><span>About Authorization</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/libraries" title="Downloads" data-title="Downloads"><span>Downloads</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/performance" title="Performance Tips" data-title="Performance Tips"><span>Performance Tips</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/parameters" title="Standard Parameters" data-title="Standard Parameters"><span>Standard Parameters</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/taskqueues" title="Taskqueues" data-title="Taskqueues"><span>Taskqueues</span></a><ul><li class=""><a href="/appengine/docs/java/taskqueue/rest/taskqueues/get" title="get" data-title="get"><span>get</span></a></li></ul></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks" title="Tasks" data-title="Tasks"><span>Tasks</span></a><ul><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/delete" title="delete" data-title="delete"><span>delete</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/get" title="get" data-title="get"><span>get</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/insert" title="insert" data-title="insert"><span>insert</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/lease" title="lease" data-title="lease"><span>lease</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/list" title="list" data-title="list"><span>list</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/patch" title="patch" data-title="patch"><span>patch</span></a></li><li class=""><a href="/appengine/docs/java/taskqueue/rest/tasks/update" title="update" data-title="update"><span>update</span></a></li></ul></li></ul></li></ul></li><li class=""><span class="tlw-title" data-title="URL Fetch">URL Fetch</span><ul><li class=""><a href="/appengine/docs/java/urlfetch" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/urlfetch/usingjavanet" title="Using java.net" data-title="Using java.net"><span>Using java.net</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/urlfetch/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Users">Users</span><ul><li class=""><a href="/appengine/docs/java/users" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/users/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="XMPP">XMPP</span><ul><li class=""><a href="/appengine/docs/java/xmpp" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/javadoc/com/google/appengine/api/xmpp/package-summary" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li></ul></li><li class=""><span class="tlw-title" data-title="Configuration">Configuration</span><ul><li class=""><a href="/appengine/docs/java/config/webxml" title="Deployment Descriptor" data-title="Deployment Descriptor"><span>Deployment Descriptor</span></a></li><li class=""><a href="/appengine/docs/java/config/appconfig" title="App Config" data-title="App Config"><span>App Config</span></a></li><li class=""><a href="/appengine/docs/java/config/indexconfig" title="Index Config" data-title="Index Config"><span>Index Config</span></a></li><li class=""><a href="/appengine/docs/java/config/cron" title="Scheduled Tasks" data-title="Scheduled Tasks"><span>Scheduled Tasks</span></a></li><li class=""><a href="/appengine/docs/java/config/queue" title="Task Queue Config" data-title="Task Queue Config"><span>Task Queue Config</span></a></li><li class=""><a href="/appengine/docs/java/config/dos" title="DoS Protection Config" data-title="DoS Protection Config"><span>DoS Protection Config</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="YAML Configuration">YAML Configuration</span><ul><li class=""><a href="/appengine/docs/java/configyaml/appconfig_yaml" title="YAML App Config" data-title="YAML App Config"><span>YAML App Config</span></a></li><li class=""><a href="/appengine/docs/java/configyaml/backends" title="Backends Config" data-title="Backends Config"><span>Backends Config</span></a></li><li class=""><a href="/appengine/docs/java/configyaml/indexconfig" title="Index Config" data-title="Index Config"><span>Index Config</span></a></li><li class=""><a href="/appengine/docs/java/configyaml/cron" title="Scheduled Tasks" data-title="Scheduled Tasks"><span>Scheduled Tasks</span></a></li><li class=""><a href="/appengine/docs/java/configyaml/queue" title="Task Queue Config" data-title="Task Queue Config"><span>Task Queue Config</span></a></li><li class=""><a href="/appengine/docs/java/configyaml/dos" title="DoS Protection Config" data-title="DoS Protection Config"><span>DoS Protection Config</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Data Processing">Data Processing</span><ul><li class=""><a href="/appengine/docs/java/dataprocessing" title="MapReduce Overview" data-title="MapReduce Overview"><span>MapReduce Overview</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/mapreduce_library" title="Creating and Running a MapReduce Job" data-title="Creating and Running a MapReduce Job"><span>Creating and Running a MapReduce Job</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/mapreduce_monitor" title="Monitoring a MapReduce Job" data-title="Monitoring a MapReduce Job"><span>Monitoring a MapReduce Job</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/mapreduce_config" title="Configuring your Project" data-title="Configuring your Project"><span>Configuring your Project</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/mapreduce_update" title="Maintaining your App" data-title="Maintaining your App"><span>Maintaining your App</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/mapreduce_example" title="Example Code" data-title="Example Code"><span>Example Code</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/mapreduce_classes" title="The MapReduce Library" data-title="The MapReduce Library"><span>The MapReduce Library</span></a></li><li class=""><a href="/appengine/docs/java/dataprocessing/javadoc" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><span class="tlw-title" data-title="Tools">Tools</span><ul><li class=""><a href="/appengine/docs/java/tools/devserver" title="Development Server" data-title="Development Server"><span>Development Server</span></a></li><li class=""><a href="/appengine/docs/java/tools/uploadinganapp" title="Uploading and Managing an App" data-title="Uploading and Managing an App"><span>Uploading and Managing an App</span></a></li><li class=""><a href="/appengine/docs/java/tools/eclipse" title="Google Plugin for Eclipse" data-title="Google Plugin for Eclipse"><span>Google Plugin for Eclipse</span></a></li><li class=""><a href="/appengine/docs/java/tools/maven" title="Using Apache Maven" data-title="Using Apache Maven"><span>Using Apache Maven</span></a></li><li class=""><a href="/appengine/docs/java/tools/ant" title="Using Apache Ant" data-title="Using Apache Ant"><span>Using Apache Ant</span></a></li><li class=""><a href="/appengine/docs/java/tools/capabilities" title="Capabilities Service Test Configuration" data-title="Capabilities Service Test Configuration"><span>Capabilities Service Test Configuration</span></a></li><li class=""><a href="/appengine/docs/java/webtoolsplatform" title="Using the Web Tools Platform" data-title="Using the Web Tools Platform"><span>Using the Web Tools Platform</span></a></li><li class=""><span class="tlw-title" data-title="Local Unit Testing">Local Unit Testing</span><ul><li class=""><a href="/appengine/docs/java/tools/localunittesting" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/tools/localunittesting/javadoc" title="Testing Javadoc" data-title="Testing Javadoc"><span>Testing Javadoc</span></a></li></ul></li><li class=""><a href="/appengine/docs/java/tools/appstats" title="Appstats" data-title="Appstats"><span>Appstats</span></a></li><li class=""><span class="tlw-title" data-title="Remote API">Remote API</span><ul><li class=""><a href="/appengine/docs/java/tools/remoteapi" title="Overview" data-title="Overview"><span>Overview</span></a></li><li class=""><a href="/appengine/docs/java/tools/remoteapi/javadoc" title="Javadoc Reference" data-title="Javadoc Reference"><span>Javadoc Reference</span></a></li></ul></li><li class=""><a href="/appengine/docs/java/tools/javadoc" title="Tools Javadoc" data-title="Tools Javadoc"><span>Tools Javadoc</span></a></li></ul></li><li class=""><a href="/appengine/docs/java/javadoc" title="Java API Reference" data-title="Java API Reference"><span>Java API Reference</span></a></li><li class=""><a href="/appengine/docs/java/jrewhitelist" title="JRE Class White List" data-title="JRE Class White List"><span>JRE Class White List</span></a></li><li class=""><a href="http://code.google.com/p/googleappengine/wiki/SdkForJavaReleaseNotes" title="Release Notes" data-title="Release Notes"><span>Release Notes</span></a></li></ul></li></ul></nav>
+
+
+
+      </div>
+      
+
+      <div id="gc-content"
+           
+           class="wide-sidebar"
+           >
+        
+        <div>
+  
+          
+  
+  <h1 itemprop="name" class="page-title" >Local Unit Testing for Java</h1>
+  
+  <div itemprop="articleBody">
+  
+<p><link rel="stylesheet" href="/appengine/css/local_extensions.css"></link>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  body.docs section.expandable-bottom-margin {
+    margin-bottom: 1.5em;
+  }
+  body.docs section.expandable-no-left-margin {
+    margin-left: 0;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="https://en.wikipedia.org/wiki/Unit_testing">Unit testing</a> allows you to check the quality of your code after you've written it, but you can also use unit testing to improve your development process as you go along. Instead of writing tests after you finish developing your application, consider writing the tests as you go. This helps you design small, maintainable, reusable units of code. It also makes it easier for you to test your code thoroughly and quickly.</p>
+<p>When you do local unit testing, you run tests that stay inside your own development environment without involving remote components. App Engine provides testing utilities that use local implementations of datastore and other <a href="/appengine/docs/java/apis">App Engine services</a>. This means you can exercise your code's use of these services locally, without deploying your code to App Engine, by using service stubs.</p>
+<p>A service stub is a method that simulates the behavior of the service. For example, the datastore service stub shown in <a href="#Java_Writing_Datastore_and_memcache_tests">Writing Datastore and Memcache Tests</a> allows you to test your datastore code without making any requests to the real datastore. Any entity stored during a datastore unit test is held in memory, not in the datastore, and is deleted after the test run. You can run small, fast tests without any dependency on datastore itself.</p>
+
+
+<p>This document gives some information about setting up a testing framework, then describes how to write unit tests against several local App Engine services.</p>
+
+<ol class="toc">
+
+  <li><a href="#Java_Setting_up_a_testing_framework">Setting up a testing framework</a></li>
+
+  <li><a href="#Java_Introducing_the_Java_testing_utilities">Introducing the Java testing utilities</a></li>
+  <li><a href="#Java_Writing_Datastore_and_memcache_tests">Writing Datastore and memcache tests</a></li>
+  <li><a href="#Java_Writing_High_Replication_Datastore_tests">Writing High Replication Datastore tests</a></li>
+
+
+  <li><a href="#Java_Writing_task_queue_tests">Writing task queue tests</a></li>
+  <li><a href="#Java_Writing_deferred_task_tests">Writing deferred task tests</a></li>
+  <li><a href="#Java_Writing_local_service_capabilities_tests">Writing local service capabilities tests</a></li>
+  <li><a href="#Java_Writing_tests_for_other_services">Writing tests for other services</a></li>
+  <li><a href="#Java_Writing_tests_with_authentication_expectations">Writing tests with authentication expectations</a></li>
+
+</ol>
+
+
+<h2 id="Java_Setting_up_a_testing_framework">Setting up a testing framework</h2>
+
+<p>Even though the SDK's testing utilities are not tied to any specific framework, we'll use <a href="http://www.junit.org">JUnit</a> for our examples so you have something concrete and complete to work from. Before you begin writing tests you'll need to add the appropriate <a href="http://sourceforge.net/projects/junit/files/junit">JUnit 4 JAR</a> to your testing classpath. Once that's done you're ready to write a very simple JUnit test.</p>
+<pre class="prettyprint notranslate" translate="no"><code>import static org.junit.Assert.*;
+
+public class MyFirstTest {
+    @Test
+    public void testAddition() {
+        assertEquals(4, 2 + 2);
+    }
+}
+</code></pre>
+<p>If you're running Eclipse 3.5, select the source file of the test to run. Select the <strong>Run</strong> menu &gt; <strong>Run As</strong> &gt; <strong>JUnit Test</strong>. The results of the test appear in the Console window.</p>
+<p>For information on running your tests with Apache Ant, please read the <a href="http://ant.apache.org/manual/Tasks/junit.html">Ant JUnit Task</a> documentation.</p>
+<aside class="note"><strong>Note:</strong><span> It is good practice to store your unit tests in a different location than your application code. Also avoid deploying JUnit and other testing packages with your application.</span></aside>
+
+<h2 id="Java_Introducing_the_Java_testing_utilities">Introducing the Java testing utilities</h2>
+
+
+<p><code>MyFirstTest</code> demonstrates the simplest possible test setup, and for tests that have no dependency on App Engine APIs or local service implementations, you may not need anything more. However, if your tests or code under test have these dependencies, add the following JAR files to your testing classpath:</p>
+<ul>
+<li><code>${SDK_ROOT}/lib/impl/appengine-api.jar</code></li>
+<li><code>${SDK_ROOT}/lib/impl/appengine-api-labs.jar</code></li>
+<li><code>${SDK_ROOT}/lib/impl/appengine-api-stubs.jar</code></li>
+</ul>
+<p>These JARs make the runtime APIs and the local implementations of those APIs available to your tests.</p>
+<p>App Engine services expect a number of things from their execution environment, and setting these things up involves a fair amount of boilerplate code. Rather than set it up yourself, you can use the utilities in the <code>com.google.appengine.tools.development.testing</code> package. To use this package, add the following JAR file to your testing classpath:</p>
+<ul>
+<li><code>${SDK_ROOT}/lib/testing/appengine-testing.jar</code></li>
+</ul>
+<p>Take a minute to browse the <a href="/appengine/docs/java/tools/localunittesting/javadoc">javadoc</a> for the <code>com.google.appengine.tools.development.testing</code> package. The most important class in this package is <a href="/appengine/docs/java/tools/localunittesting/javadoc/com/google/appengine/tools/development/testing/LocalServiceTestHelper">LocalServiceTestHelper</a>, which handles all of the necessary environment setup and gives you a top-level point of configuration for all the local services you might want to access in your tests.</p>
+<p>To write a test that accesses a specific local service:</p>
+<ul>
+<li>Create an instance of <a href="/appengine/docs/java/tools/localunittesting/javadoc/com/google/appengine/tools/development/testing/LocalServiceTestHelper"><code>LocalServiceTestHelper</code></a> with a <a href="/appengine/docs/java/tools/localunittesting/javadoc/com/google/appengine/tools/development/testing/LocalServiceTestConfig"><code>LocalServiceTestConfig</code></a> implementation for that specific local service.</li>
+<li>Call <code>setUp()</code> on your <code>LocalServiceTestHelper</code> instance before each test and <code>tearDown()</code> after each test.</li>
+</ul>
+
+
+<h2 id="Java_Writing_Datastore_and_memcache_tests">Writing Datastore and memcache tests</h2>
+
+
+<p>The following example tests the use of the <a href="/appengine/docs/java/datastore/index">datastore</a> service.</p>
+<pre class="prettyprint notranslate" translate="no"><code>import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import static com.google.appengine.api.datastore.FetchOptions.Builder.withLimit;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class LocalDatastoreTest {
+
+    private final LocalServiceTestHelper helper =
+        new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+
+    @Before
+    public void setUp() {
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
+    }
+
+    // run this test twice to prove we're not leaking any state across tests
+    private void doTest() {
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+        assertEquals(0, ds.prepare(new Query("yam")).countEntities(withLimit(10)));
+        ds.put(new Entity("yam"));
+        ds.put(new Entity("yam"));
+        assertEquals(2, ds.prepare(new Query("yam")).countEntities(withLimit(10)));
+    }
+
+    @Test
+    public void testInsert1() {
+        doTest();
+    }
+
+    @Test
+    public void testInsert2() {
+        doTest();
+    }
+}
+</code></pre>
+<p>In this example, <code>LocalServiceTestHelper</code> sets up and tears down the parts of the execution environment that are common to all local services, and <code>LocalDatastoreServiceTestConfig</code> sets up and tears down the parts of the execution environment that are specific to the local datastore service. If you read the <a href="/appengine/docs/java/tools/localunittesting/javadoc">javadoc</a> you'll learn that this involves configuring the local datastore service to keep all data in memory (as opposed to flushing to disk at regular intervals) and wiping out all in-memory data at the end of every test. This is just the default behavior for a datastore test, and if this behavior isn't what you want you can change it.</p>
+<h4 id="changing_the_example_to_access_memcache_instead_of_datastore">Changing the example to access memcache instead of datastore</h4>
+<p>To create a test that accesses the local memcache service, you can use the  code that is shown above, with a few small changes.</p>
+<p>Instead of importing classes related to datastore, import those related to memcache. You still need to import <code>LocalServiceTestHelper</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code>import com.google.appengine.api.memcache.MemcacheService;
+import com.google.appengine.api.memcache.MemcacheServiceFactory;
+import com.google.appengine.tools.development.testing.LocalMemcacheServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+</code></pre>
+<p>Change the name of the class that you are creating, and change the instance of <code>LocalServiceTestHelper</code>, so that they are specific to memcache.</p>
+<pre class="prettyprint notranslate" translate="no"><code>public class LocalMemcacheTest {
+
+private final LocalServiceTestHelper helper =
+    new LocalServiceTestHelper(new LocalMemcacheServiceTestConfig());
+</code></pre>
+<p>And finally, change the way you actually run the test so that it is relevant to memcache.</p>
+<pre class="prettyprint notranslate" translate="no"><code>private void doTest() {
+    MemcacheService ms = MemcacheServiceFactory.getMemcacheService();
+    assertFalse(ms.contains("yar"));
+    ms.put("yar", "foo");
+    assertTrue(ms.contains("yar"));
+}
+</code></pre>
+<p>As in the datastore example, the <code>LocalServiceTestHelper</code> and the service-specific <code>LocalServiceTestConfig</code> (in this case <code>LocalMemcacheServiceTestConfig</code>) manage the execution environment.</p>
+
+
+<h2 id="Java_Writing_High_Replication_Datastore_tests">Writing High Replication Datastore tests</h2>
+
+<p>If your app uses the High Replication Datastore (HRD), you may want to write tests that verify your application's behavior in the face of eventual consistency. <code>LocalDatastoreServiceTestConfig</code> exposes options that make this easy:</p>
+
+<pre class="prettyprint notranslate" translate="no"><code>import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import static com.google.appengine.api.datastore.FetchOptions.Builder.withLimit;
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class LocalHighRepDatastoreTest {
+
+    // maximum eventual consistency
+    private final LocalServiceTestHelper helper =
+        new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig()
+            .setDefaultHighRepJobPolicyUnappliedJobPercentage(100));
+
+    @Before
+    public void setUp() {
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
+    }
+
+    @Test
+    public void testEventuallyConsistentGlobalQueryResult() {
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+        Key ancestor = KeyFactory.createKey("foo", 3);
+        ds.put(new Entity("yam", ancestor));
+        ds.put(new Entity("yam", ancestor));
+        // global query doesn't see the data
+        assertEquals(0, ds.prepare(new Query("yam")).countEntities(withLimit(10)));
+        // ancestor query does see the data
+        assertEquals(2, ds.prepare(new Query("yam", ancestor)).countEntities(withLimit(10)));
+    }
+}
+</code></pre>
+<p>By setting the unapplied job percentage to 100, we are instructing the local datastore to operate with the maximum amount of eventual consistency. Maximum eventual consistency means writes will commit but always fail to apply, so global (non-ancestor) queries will consistently fail to see changes. This is of course not representative of the amount of eventual consistency your application will see when running in production, but for testing purposes, it's very useful to be able to configure the local datastore to behave this way every time.</p>
+<p>Note that <code>setDefaultHighRepJobPolicyUnappliedJobPercentage(0)</code> will switch local datastore service to Master/slave mode. If you need to force HRD mode and all jobs to apply successfully (to test cross-group transactions, for example), just use <code>setApplyAllHighRepJobPolicy()</code> instead.</p>
+<p>If you want more fine-grained control over which transactions fail to apply, you can register your own <code>HighRepJobPolicy</code>:</p>
+<pre class="prettyprint notranslate" translate="no"><code>// ...
+import com.google.appengine.api.datastore.dev.HighRepJobPolicy;
+
+public class LocalCustomPolicyHighRepDatastoreTest {
+    private static final class CustomHighRepJobPolicy implements HighRepJobPolicy {
+        static int count = 0;
+        @Override
+        public boolean shouldApplyNewJob(Key entityGroup) {
+            // every other new job fails to apply
+            return count++ % 2 == 0;
+        }
+
+        @Override
+        public boolean shouldRollForwardExistingJob(Key entityGroup) {
+            // every other existing job fails to apply
+            return count++ % 2 == 0;
+        }
+    }
+
+    private final LocalServiceTestHelper helper =
+        new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig()
+           .setAlternateHighRepJobPolicyClass(CustomHighRepJobPolicy.class));
+
+    @Before
+    public void setUp() {
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
+    }
+
+    @Test
+    public void testEventuallyConsistentGlobalQueryResult() {
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+        ds.put(new Entity("yam")); // applies
+        ds.put(new Entity("yam")); // does not apply
+        // first global query only sees the first Entity
+        assertEquals(1, ds.prepare(new Query("yam")).countEntities(withLimit(10)));
+        // second global query sees both Entities because we "groom" (attempt to
+        // apply unapplied jobs) after every query
+        assertEquals(2, ds.prepare(new Query("yam")).countEntities(withLimit(10)));
+    }
+}
+</code></pre>
+
+
+<p>The testing APIs are useful for verifying that your application behaves properly in the face of eventual consistency, but please keep in mind that the local High Replication read consistency model is an approximation of the production High Replication read consistency model, not an exact replica. In the local environment, performing a <code>get()</code> of an <code>Entity</code> that belongs to an entity group with an unapplied write will always make the results of the unapplied write visible to subsequent global queries. In production this is not the case.</p>
+
+
+<h2 id="Java_Writing_task_queue_tests">Writing task queue tests</h2>
+
+<p>Tests that use the local task queue are a bit more involved because, unlike datastore and memcache, the task queue API does not expose a facility for examining the state of the service. We need to access the local task queue itself to verify that a task has been scheduled with the expected parameters. To do this, we need <code>com.google.appengine.api.taskqueue.dev.LocalTaskQueue</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code>import com.google.appengine.api.taskqueue.dev.LocalTaskQueue;
+import com.google.appengine.api.taskqueue.dev.QueueStateInfo;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.google.appengine.tools.development.testing.LocalTaskQueueTestConfig;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class TaskQueueTest {
+
+    private final LocalServiceTestHelper helper =
+        new LocalServiceTestHelper(new LocalTaskQueueTestConfig());
+
+    @Before
+    public void setUp() {
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
+    }
+
+
+    // Run this test twice to demonstrate we're not leaking state across tests.
+    // If we _are_ leaking state across tests we'll get an exception on the
+    // second test because there will already be a task with the given name.
+    private void doTest() throws InterruptedException {
+        QueueFactory.getDefaultQueue().add(TaskOptions.Builder.withTaskName("task29"));
+        // give the task time to execute if tasks are actually enabled (which they
+        // aren't, but that's part of the test)
+        Thread.sleep(1000);
+        LocalTaskQueue ltq = LocalTaskQueueTestConfig.getLocalTaskQueue();
+        QueueStateInfo qsi = ltq.getQueueStateInfo().get(QueueFactory.getDefaultQueue().getQueueName());
+        assertEquals(1, qsi.getTaskInfo().size());
+        assertEquals("task29", qsi.getTaskInfo().get(0).getTaskName());
+    }
+
+    @Test
+    public void testTaskGetsScheduled1() throws InterruptedException {
+        doTest();
+    }
+
+    @Test
+    public void testTaskGetsScheduled2() throws InterruptedException {
+        doTest();
+    }
+}
+</code></pre>
+<p>Notice how we ask the <code>LocalTaskqueueTestConfig</code> for a handle to the local service instance, and then we investigate the local service itself to make sure the task was scheduled as expected. All <code>LocalServiceTestConfig</code> implementations expose a similar method. You may not always need it, but sooner or later you'll be glad it's there.</p>
+<h2 id="Java_Writing_deferred_task_tests">Writing deferred task tests</h2>
+
+<p>If your application code uses <a href="/appengine/docs/java/javadoc/com/google/appengine/api/taskqueue/DeferredTask">Deferred Tasks</a>, the Java Testing Utilities make it easy to write an integration test that verifies the results of these tasks.</p>
+<pre class="prettyprint notranslate" translate="no"><code>import static org.junit.Assert.*;
+
+import com.google.appengine.api.taskqueue.DeferredTask;
+import com.google.appengine.api.taskqueue.QueueFactory;
+import com.google.appengine.api.taskqueue.TaskOptions;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.google.appengine.tools.development.testing.LocalTaskQueueTestConfig;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.concurrent.TimeUnit;
+
+public class DeferredTaskTest {
+
+    // Unlike CountDownLatch, TaskCountDownlatch lets us reset.
+    private final LocalTaskQueueTestConfig.TaskCountDownLatch latch =
+        new LocalTaskQueueTestConfig.TaskCountDownLatch(1);
+
+    private final LocalServiceTestHelper helper =
+        new LocalServiceTestHelper(new LocalTaskQueueTestConfig()
+            .setDisableAutoTaskExecution(false)
+            .setCallbackClass(LocalTaskQueueTestConfig.DeferredTaskCallback.class)
+            .setTaskExecutionLatch(latch));
+
+    private static class MyTask implements DeferredTask {
+        private static boolean taskRan = false;
+
+        @Override
+        public void run() {
+            taskRan = true;
+        }
+    }
+
+    @Before
+    public void setUp() {
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        MyTask.taskRan = false;
+        latch.reset();
+        helper.tearDown();
+    }
+
+    @Test
+    public void testTaskGetsRun() throws InterruptedException {
+        QueueFactory.getDefaultQueue().add(
+            TaskOptions.Builder.withPayload(new MyTask()));
+        assertTrue(latch.await(5, TimeUnit.SECONDS));
+        assertTrue(MyTask.taskRan);
+    }
+}
+</code></pre>
+<p>As with our first Local Task Queue example, we are using a <code>LocalTaskqueueTestConfig</code>, but this time we are initializing it with some additional arguments that give us an easy way to verify not just that the task was scheduled but that the task was executed:  We call <code>setDisableAutoTaskExecution(false)</code> to tell the Local Task Queue to automatically execute tasks. We call <code>setCallbackClass(LocalTaskQueueTestConfig.DeferredTaskCallback.class)</code> to tell the Local Task Queue to use a callback that understands how to execute Deferred tasks. And finally we call <code>setTaskExecutionLatch(latch)</code> to tell the Local Task Queue to decrement the latch after each task execution. This configuration allows us to write a test in which we enqueue a Deferred task, wait until that task runs, and then verify that the task behaved as expected when it ran.</p>
+<h2 id="Java_Writing_local_service_capabilities_tests">Writing local service capabilities tests</h2>
+
+<p>Capabilities testing involves changing the status of some service, such as datastore, blobstore, memcache, and so forth, and running your application against that service to determine whether your application is responding as expected under different conditions. The capability status can be changed using the <a href="/appengine/docs/java/tools/localunittesting/javadoc/com/google/appengine/tools/development/testing/LocalCapabilitiesServiceTestConfig">LocalCapabilitiesServiceTestConfig</a> class.</p>
+<aside class="note"><strong>Note:</strong><span> The capability status can also be changed in the dev app server console, or via command line options. For complete details, see <a href="/appengine/docs/java/tools/capabilities">Capabilities Service Test Configuration</a>.</span></aside>
+<p>The following code snippet changes the capability status of the datastore service to disabled and then runs a test on the datastore service. (You can substitute other services for datastore as needed.)</p>
+<pre class="prettyprint notranslate" translate="no"><code>import com.google.appengine.api.capabilities.Capability;
+import com.google.appengine.api.capabilities.CapabilityState;
+import com.google.appengine.api.capabilities.CapabilityStatus;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.google.appengine.tools.development.testing.LocalCapabilitiesServiceTestConfig;
+import com.google.apphosting.api.ApiProxy;
+
+import org.junit.After;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+public class ShortTest {
+
+
+      private LocalServiceTestHelper helper;
+
+      @After
+      public void tearDown() {
+          helper.tearDown();
+      }
+
+
+      @Test(expected = ApiProxy.CapabilityDisabledException.class)
+      public void testDisabledDatastore() {
+        Capability testOne = new Capability("datastore_v3");
+        CapabilityStatus testStatus = CapabilityStatus.DISABLED;
+        //Initialize
+        LocalCapabilitiesServiceTestConfig config = 
+                new LocalCapabilitiesServiceTestConfig().setCapabilityStatus(testOne, testStatus);
+        helper = new LocalServiceTestHelper(config);
+        helper.setUp();
+        FetchOptions fo = FetchOptions.Builder.withLimit(10);
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+        assertEquals(0, ds.prepare(new Query("yam")).countEntities(fo));
+      }
+}
+</code></pre>
+<p>The sample test first creates a <code>Capability</code> object initialized to datastore, then creates a <code>CapabilityStatus</code> object set to DISABLED. The <code>LocalCapabilitiesServiceTestConfig</code> is created with the capability and status set using the <code>Capability</code> and <code>CapabilityStatus</code> objects just created.</p>
+<p>The <code>LocalServiceHelper</code> is then created using the <code>LocalCapabilitiesServiceTestConfig</code> object. Now that the test has been set up, the <code>DatastoreService</code> is created and a Query is sent to it to determine whether the test generates the expected results, in this case, a <code>CapabilityDisabledException</code>.</p>
+<h2 id="Java_Writing_tests_for_other_services">Writing tests for other services</h2>
+
+<p>Testing utilities are available for blobstore and other App Engine services. For a list of all the services that have local implementations for testing, see the <a href="/appengine/docs/java/tools/localunittesting/javadoc/com/google/appengine/tools/development/testing/LocalServiceTestConfig"><code>LocalServiceTestConfig</code></a> documentation.</p>
+<h2 id="Java_Writing_tests_with_authentication_expectations">Writing tests with authentication expectations</h2>
+
+<p>If your application behaves differently when a user is logged in, or if your application has admin-only functionality, you can write tests to verify that this logic is behaving as expected. Here's how to do it:</p>
+<pre class="prettyprint notranslate" translate="no"><code>import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.google.appengine.tools.development.testing.LocalUserServiceTestConfig;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class AuthenticationTest {
+
+    private final LocalServiceTestHelper helper =
+        new LocalServiceTestHelper(new LocalUserServiceTestConfig())
+            .setEnvIsAdmin(true).setEnvIsLoggedIn(true);
+
+    @Before
+    public void setUp() {
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
+    }
+
+    @Test
+    public void testIsAdmin() {
+        UserService userService = UserServiceFactory.getUserService();
+        assertTrue(userService.isUserAdmin());
+    }
+}
+</code></pre>
+<p>In this example, we're configuring the <code>LocalServiceTestHelper</code> with the <code>LocalUserServiceTestConfig</code> so we can use the <code>UserService</code> in our test, but we're also configuring some authentication-related environment data on the <code>LocalServiceTestHelper</code> itself.</p>
+
+
+
+  </div>
+
+  
+        </div>
+        
+<div id="gc-content-footer">
+
+<div id="gc-content-license">
+
+    
+      
+        <p>Except as otherwise noted, the content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a>, and code samples are licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>. For details, see our <a href="/site-policies">Site Policies</a>.</p>
+      
+    
+    
+    
+
+</div>
+
+
+
+<div itemprop="datePublished" content="2014-09-03T06:51:26.154400" id="gc-content-last-updated">Last updated September 3, 2014.</div>
+
+</div>
+
+
+      </div>
+  
+
+        
+      </div>
+        
+      
+      
+        
+          
+        
+      
+
+      
+  
+       <!-- not (if site.theme == 'maia' or site.theme == 'maia-cloud') -->
+      <div id="gc-footer-container">
+        <footer id="gc-footer">
+          
+
+
+
+
+        <div id="maia-footer-local" class="footer-local">
+          <div id="footer-top" class="maia-aux">
+            <div class="footer-top-wrap">
+
+             <div class="search-wrap new_left">
+               <div class="dev-wrap new_left">
+                 <a href="/"><img src="/_static/images/v2/developers-logo.png" /></a>
+               </div>
+               <form class="search new_left" action="/search/results" method="GET" id="footer-search">
+                 <div id="searchbox" class="searchbox new_left">
+                   <input type="text" name="q" class="q" id="q" value="" placeholder="Search" autocomplete="off">
+                 </div>
+                 <button id="search-button" class="button button-blue big new_left">
+                   <img src="/_static/images/v2/search.png" alt="Search">
+                 </button>
+               </form>
+             </div>
+             <div class="plus-wrap new_left">
+               <div class="plus">
+                 <!-- Place this tag where you want the widget to render. -->
+                 <div class="g-follow" data-annotation="bubble" data-height="24" data-href="https://plus.google.com/111395306401981598462" data-rel="publisher"></div>
+                 <!-- Place this tag after the last widget tag. -->
+                 <script type="text/javascript">
+                   (function() {
+                     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                     po.src = 'https://apis.google.com/js/platform.js';
+                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                   })();
+                 </script>
+               </div>
+             </div>
+           </div>
+         </div>
+
+      <div id="footer-list" class="maia-aux">
+    <div class="footer-list-wrap  maia-cols">
+      <div class="maia-col-3">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="/products/">Products</a></li>
+          <li><a href="/showcase/">Showcase</a></li>
+          <li><a href="/events/">Events</a></li>
+          <li><a href="/community/">Communities</a></li>
+        </ul>
+      </div>
+      <div class="maia-col-3">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="http://googledevelopers.blogspot.com/">Blog</a></li>
+          <li><a href="https://plus.google.com/+GoogleDevelopers/posts">Google+ Community</a></li>
+          <li><a href="http://www.youtube.com/user/GoogleDevelopers">YouTube Channel</a></li>
+          <li><a class="google-feedback" data-p="81425" data-b="Documentation"  data-v="devsite-20140902-r00-rc02.default" href="">Report an Issue</a></li>
+          <li><a href="/careers/">Jobs</a></li>
+        </ul>
+      </div>
+      <div class="maia-col-3">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="/groups/">Groups</a></li>
+          <li><a href="/experts/">Experts</a></li>
+          <li><a href="/startups/">Startups</a></li>
+          <li><a href="/women-techmakers/">Women Techmakers</a></li>
+        </ul>
+      </div>
+      <div class="maia-col-3">
+        <h4>Top Products</h4>
+        <ul class="top-prod-1 left">
+          <li><a href="/advertise/">Ads</a></li>
+          <li><a href="/analytics/">Analytics</a></li>
+          <li><a href="http://developer.android.com">Android</a></li>
+          <li><a href="/google-apps/">Apps</a></li>
+          <li><a href="/cast/">Cast</a></li>
+          <li><a href="/chrome/">Chrome</a></li>
+        </ul>
+        <ul class="top-prod-2 left">
+          <li><a href="/cloud/">Cloud</a></li>
+          <li><a href="/glass/">Glass</a></li>
+          <li><a href="/+/">Google+</a></li>
+          <li><a href="/maps/">Maps</a></li>
+          <li><a href="/commerce/wallet/">Wallet</a></li>
+          <li><a href="/youtube/">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div><!-- END DIV#MAIA-FOOTER-LOCAL -->
+
+<div id="maia-footer-global" class="footer-global">
+  <div class="maia-aux">
+    <span id="terms">
+      <a href="/site-terms/">Terms of Use</a>
+    </span>
+    <span class="pipe">
+    </span>
+    <span id="privacy">
+      <a href="http://www.google.com/intl/en/privacy/">Privacy Policy</a>
+    </span>
+
+    
+    <div id="gc-language" class="new_right">
+    <ul>
+      <li>
+        <form id="setlang" action="/i18n/setlang/" method="post">
+          <input type='hidden' name='csrfmiddlewaretoken' value='TEXA2eWisAPz0tYpD4SLzgScFgQEahUR' />
+          <select id="footer_language" name="language">
+            <option value="ar"
+                >
+                العربيّة
+              </option><option value="bg"
+                >
+                български
+              </option><option value="ca"
+                >
+                català
+              </option><option value="zh-cn"
+                >
+                简体中文
+              </option><option value="zh-tw"
+                >
+                繁體中文
+              </option><option value="hr"
+                >
+                Hrvatski
+              </option><option value="cs"
+                >
+                česky
+              </option><option value="da"
+                >
+                dansk
+              </option><option value="nl"
+                >
+                Nederlands
+              </option><option value="en"
+                 selected="selected" >
+                English
+              </option><option value="fa"
+                >
+                فارسی
+              </option><option value="fi"
+                >
+                suomi
+              </option><option value="fr"
+                >
+                français
+              </option><option value="de"
+                >
+                Deutsch
+              </option><option value="el"
+                >
+                Ελληνικά
+              </option><option value="he"
+                >
+                עברית
+              </option><option value="hi"
+                >
+                Hindi
+              </option><option value="hu"
+                >
+                Magyar
+              </option><option value="id"
+                >
+                Bahasa Indonesia
+              </option><option value="it"
+                >
+                italiano
+              </option><option value="ja"
+                >
+                日本語
+              </option><option value="ko"
+                >
+                한국어
+              </option><option value="lv"
+                >
+                latviešu
+              </option><option value="lt"
+                >
+                Lithuanian
+              </option><option value="nb"
+                >
+                norsk (bokmål)
+              </option><option value="nn"
+                >
+                norsk (nynorsk)
+              </option><option value="pl"
+                >
+                polski
+              </option><option value="pt-br"
+                >
+                Português Brasileiro
+              </option><option value="pt"
+                >
+                Português
+              </option><option value="ro"
+                >
+                Română
+              </option><option value="ru"
+                >
+                Русский
+              </option><option value="sr"
+                >
+                српски
+              </option><option value="sk"
+                >
+                slovenský
+              </option><option value="sl"
+                >
+                Slovenščina
+              </option><option value="es"
+                >
+                español
+              </option><option value="sv"
+                >
+                svenska
+              </option><option value="th"
+                >
+                Thai
+              </option><option value="tr"
+                >
+                Türkçe
+              </option><option value="uk"
+                >
+                Українська
+              </option><option value="vi"
+                >
+                Vietnamese
+              </option>
+          </select>
+        </form>
+      </li>
+    </ul>
+    </div>
+    
+  </div>
+</div><!-- END DIV#MAIA-FOOTER-GLOBAL -->
+<script src="https://apis.google.com/js/plusone.js?onload=devsite_plusoneLoaded" async defer></script>
+<script type="text/javascript">
+    // Add the handlers once the document has loaded.
+    $(document).ready(function() {
+      devsite.devsite.handlePlusBadgeResize($('#plusbadge'), $('#homephoto'));
+    });
+  </script>
+
+        </footer>
+      </div>
+      
+      
+  
+
+    </div>
+    <div id="needAuth" class="msgDialogContent">
+      
+      <h1>Authentication required</h1>
+      
+      <div>
+        You need to be signed in with <a href='http://www.google.com/+'>Google+</a> to do that.
+      </div>
+      <button>Sign in</button>
+      <button>Cancel</button>
+    </div>
+    <div id="signingIn" class="msgDialogContent">
+      
+      <h1>Signing you in...</h1>
+      <div>
+        
+        Google Developers needs your permission to do that.
+      </div>
+      
+      <button>Try again</button>
+      
+      <button>Cancel</button>
+    </div>
+    <div id="search-autocomplete" class="search-results search-autocomplete" style="display:none"></div>
+    <script type="text/javascript" async="" defer="" src="//www.gstatic.com/feedback/api.js"></script>
+    
+      <script>
+        (function($) {
+          var cssHref = $('#screen-foot').attr('data-href');
+          $('#screen-foot').attr('href', cssHref);
+        })(jQuery);
+      </script>
+    
+    <script id="jqueryui" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    <script src="/_static/07491c0cdc/js/script_foot.js"></script>
+    <script>
+      (function($) {
+        devsite.devsite.Init($, null, '',
+            'en', true,
+            '07491c0cdc');
+      })(jQuery);
+
+      
+      devsite.localInit = function() {
+        
+      };
+    </script>
+    
+    <!-- Google Code for PXL - Developers - Codesite - HP - 90d Remarketing List -->
+    <script type="text/javascript">
+    $('#setlang select').each(function() {
+      if (navigator.userAgent.match(/msie/i)) {
+        $(this).change(function() {
+          $('#setlang').submit();
+        });
+      } else {
+        $(this).kdSelect({'change': function() {
+          $('#setlang').submit();
+        }});
+      }
+    });
+    </script>
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 992540712;
+      var google_conversion_language = "en";
+      var google_conversion_format = "3";
+      var google_conversion_color = "ffffff";
+      var google_conversion_label = "qio2CKCPwQMQqPCj2QM";
+      var google_conversion_value = 0;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+
+    
+
+    
+    
+    <script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=aclknqcuyds7o"></script>
+    
+
+    
+    <script type="text/javascript">
+    var axel = Math.random() + "";
+    var a = axel * 10000000000000;
+    document.write('<iframe src="https://2507573.fls.doubleclick.net/activityi;src=2507573;type=other026;cat=googl875;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>');
+    </script>
+    <noscript>
+    <iframe src="https://2507573.fls.doubleclick.net/activityi;src=2507573;type=other026;cat=googl875;ord=1?" width="1" height="1" frameborder="0" style="display:none"></iframe>
+    </noscript>
+    
+
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/992540712/?label=qio2CKCPwQMQqPCj2QM&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    
+
+
+
+<script type="text/javascript" defer>
+
+
+$(document).ready(function() {
+    contentTimer.name = 'content';
+    contentTimer.tick('ol');
+    window.jstiming.report(contentTimer);
+
+});
+</script>
+<script src="https://apis.google.com/js/plusone.js?onload=devsite_plusoneLoaded" async defer></script>
+
+
+
+
+  </div><!-- END DIV.MAIA-MAX -->
+  </body>
+
+  
+</html>

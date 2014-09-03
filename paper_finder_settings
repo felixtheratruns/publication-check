@@ -1,23 +1,23 @@
 {"Settings": 
-{"general": {"XML path":"/media/datal/jhome/workspace/calcVolunteerProj/data/publications.xml"},
+{"general": {"XML path":"/data/workspace/calcVolunteerProj/data/publications.xml"},
 "CVs": {
 "Rai": {
-	"Path pub": "/media/datal/jhome/workspace/calcVolunteerProj/data/pub_compare",
-	"Path out": "/media/datal/jhome/workspace/calcVolunteerProj/data/out",
-	"Path in": "/media/datal/jhome/workspace/calcVolunteerProj/data/rai_pub",
+	"Path pub": "/data/workspace/calcVolunteerProj/data/pub_compare",
+	"Path out": "/data/workspace/calcVolunteerProj/data/out",
+	"Path in": "/data/workspace/calcVolunteerProj/data/rai_pub",
 	"Contains name": "Rai",
 	"Contains": "ln:",
 	"Matches": ".* [0-9][0-9][0-9][0-9]$",
-	"Publications": "/media/datal/jhome/workspace/calcVolunteerProj/data/rai_pub"
+	"Publications": "/data/workspace/calcVolunteerProj/data/rai_pub"
     },
     "Pan": { 		
-	"Path pub": "/media/datal/jhome/workspace/calcVolunteerProj/data/pan_pub_compare",
-	"Path out": "/media/datal/jhome/workspace/calcVolunteerProj/data/pan_out",
-	"Path in": "/media/datal/jhome/workspace/calcVolunteerProj/data/pan_pub",
+	"Path pub": "/data/workspace/calcVolunteerProj/data/data/pan_pub_compare",
+	"Path out": "/data/workspace/calcVolunteerProj/data/data/pan_out",
+	"Path in": "/data/workspace/calcVolunteerProj/data/pan_pub",
 	"Contains name": "Rai",
 	"Contains": "ln:",
 	"Matches": ".* [0-9][0-9][0-9][0-9]$",
-	"Publications": "/media/datal/jhome/workspace/calcVolunteerProj/data/pan_pub"
+	"Publications": "/data/workspace/calcVolunteerProj/data/pan_pub"
     }}
 }
 }
